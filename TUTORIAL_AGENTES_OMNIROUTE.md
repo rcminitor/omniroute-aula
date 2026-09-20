@@ -1,139 +1,173 @@
-# 📘 Guia Prático: Agentes de IA, OmniRoute e Gestão Inteligente de LLMs
+# 📘 Guia & Tutorial Prático: OmniRoute + Claude Code em Pasta Única
 
-Este tutorial consolida todo o aprendizado prático sobre o funcionamento de **Agentes de Desenvolvimento**, a infraestrutura de **Roteamento de LLMs (OmniRoute)**, a mitigação de erros de cota (**Erro 429**) e as melhores práticas com o **Claude Code**.
+> **Disciplina de Inteligência Artificial — IFCE Campus Caucaia**  
+> **Prof. Romulo Cesar** (`romulo.cesar@ifce.edu.br`)  
+> **Repositório:** [https://github.com/rcminitor/omniroute-aula](https://github.com/rcminitor/omniroute-aula)  
+> **Página Web Online:** [https://rcminitor.github.io/omniroute-aula/](https://rcminitor.github.io/omniroute-aula/)
 
 ---
 
 ## 📑 Índice
-1. [O que são Agentes de IA e como operam no seu PC](#1-o-que-são-agentes-de-ia)
-2. [A Verdade sobre Custos de IA: A Falácia do "Almoço Grátis"](#2-a-verdade-sobre-custos-de-ia)
-3. [Entendendo o Erro 429 e a Estratégia de Fallback (Transbordo)](#3-entendendo-o-erro-429-e-fallback)
-4. [Arquitetura do OmniRoute: Múltiplos Provedores](#4-arquitetura-do-omniroute)
-5. [Claude Code no Terminal: Dicas, Comandos e Otimização de MCPs](#5-claude-code-no-terminal)
+1. [Conceitos: Agentes de IA e o OmniRoute](#1-conceitos-agentes-de-ia-e-omniroute)
+2. [A Falácia do "Grátis" & Erro 429](#2-a-falácia-do-grátis--erro-429)
+3. [Tutorial Passo a Passo: Criando o Ambiente em Pasta Única do Zero](#3-tutorial-passo-a-passo-pasta-única)
+4. [Estrutura de Arquivos da Pasta do Projeto](#4-estrutura-de-arquivos-do-projeto)
+5. [Configuração do Combo Multi-Provedor no OmniRoute](#5-configuração-do-combo-multi-provedor)
+6. [Operação no Terminal do Claude Code](#6-operação-no-terminal-do-claude-code)
 
 ---
 
-## 1. O que são Agentes de IA?
+## 1. Conceitos: Agentes de IA e OmniRoute
 
-Diferente de um chatbot tradicional (onde você copia e cola código manualmente), um **Agente de IA** (como Antigravity ou Claude Code) tem autonomia para executar ações reais no seu sistema:
+Um **Agente de IA** (como Claude Code ou Antigravity) difere de um chat comum porque tem acesso direto aos arquivos locais e ao terminal do computador:
+* **Leitura Cirúrgica:** Inspeciona o código e a estrutura do projeto.
+* **Edição de Arquivos:** Altera o código direto no disco.
+* **Execução de Terminal:** Compila, roda testes e corrige falhas automaticamente.
 
-```
-[ Usuário dita o objetivo ]
-          │
-          ▼
-   ┌──────────────┐
-   │ Agente de IA │ ◄─── Loop de Raciocínio (ReAct)
-   └──────┬───────┘
-          │
-     ┌────┴─────────────────────────────┐
-     ▼                                  ▼
-[ Leitura e Edição de Arquivos ]   [ Execução no Terminal ]
-(Modifica código no disco)        (Roda testes, builds, scripts)
-```
-
-### O que um agente faz diretamente na sua máquina:
-* **Lê e pesquisa arquivos:** Faz buscas globais (`grep`), analisa dependências e entende a arquitetura.
-* **Edita código com precisão:** Altera apenas as linhas necessárias, sem perder o contexto nem apagar comentários.
-* **Executa o terminal:** Roda scripts PowerShell, instala pacotes, executa testes e analisa mensagens de erro para autocorrigir o código.
+O **OmniRoute** é um gateway/proxy local (porta `20128`) que intercepta as chamadas do Claude Code e permite rotear para múltiplos provedores (Google Gemini, Groq, Ollama, OpenRouter).
 
 ---
 
-## 2. A Verdade sobre Custos de IA
+## 2. A Falácia do "Grátis" & Erro 429
 
-Muitos tutoriais prometem *"Use Claude Code 100% grátis para sempre via OpenRouter"*. Na prática, isso esbarra em limites técnicos:
-
-1. **Inferência é cara:** Rodar modelos de ponta exige clusters de GPUs (H100) com alto consumo elétrico e de hardware.
-2. **Modelos `:free` são para degustação:** O OpenRouter limita contas gratuitas a poucas dezenas de requisições por dia.
-3. **Agentes consomem muito:** Uma única tarefa de agente pode fazer 30 a 50 chamadas de API em loop, esgotando cotas gratuitas em minutos.
-
-### As Duas Únicas Estratégias Reais:
-| Estratégia | Como funciona | Custo | Vantagem |
-| :--- | :--- | :--- | :--- |
-| **1. IA Local (Ollama)** | Roda no seu PC usando sua memória RAM (32 GB). | **R$ 0,00** | 100% privado, sem internet, sem erro 429. |
-| **2. Pay-as-you-go Ultrabarato** | Paga centavos por uso em modelos rápidos (DeepSeek V3, Gemini Flash). | **R$ 5 a R$ 15/mês** | Altíssimo poder de raciocínio sem mensalidades fixas de R$ 120+. |
-
----
-
-## 3. Entendendo o Erro 429 e Fallback
-
-### O que significa?
+No OpenRouter, contas sem crédito recebem o erro:
 > `API Error: Request rejected (429) · Rate limit exceeded: free-models-per-day`
 
-* **Código 429:** *Too Many Requests* (Limite de requisições atingido).
-* **Bloqueio por Conta:** No OpenRouter, o limite de modelos gratuitos é aplicado à **sua chave de API inteira**. Se um modelo gratuito travar, todos os outros modelos gratuitos daquela chave travam juntos.
-
-### A Solução: Fallback Multi-Provedor
-Para o sistema pular automaticamente para outra IA quando uma atingir o limite, os modelos devem vir de **empresas/contas diferentes**:
-
-```
-[ Chamada do Agente ]
-          │
-          ▼
-┌────────────────────────────────────────┐
-│ 1. Google Gemini (Google AI Studio)   │ ───► Sucesso? ──► Retorna resposta
-└──────────────────┬─────────────────────┘
-                   │ Falhou / 429
-                   ▼
-┌────────────────────────────────────────┐
-│ 2. Groq Cloud (Llama 3.3 70B)          │ ───► Sucesso? ──► Retorna resposta
-└──────────────────┬─────────────────────┘
-                   │ Falhou / 429
-                   ▼
-┌────────────────────────────────────────┐
-│ 3. DeepSeek / OpenRouter (Centavos)    │ ───► Conclui sem interrupção
-└────────────────────────────────────────┘
-```
+* **Motivo:** O limite é aplicado à **chave inteira**. Trocar entre modelos `:free` dentro da mesma conta não resolve.
+* **Solução:** Criar um **Combo com Fallback (Transbordo)** usando provedores independentes:
+  1. 🟢 **Google Gemini** (Google AI Studio - grátis e cota generosa).
+  2. 🟢 **Groq Cloud** (Llama 3.3 70B - ultra-rápido).
+  3. 🟢 **DeepSeek / OpenRouter com centavos** (Rede de segurança para nunca travar).
 
 ---
 
-## 4. Arquitetura do OmniRoute
+## 3. Tutorial Passo a Passo: Pasta Única (Via Terminal)
 
-O **OmniRoute** funciona como uma central telefônica (proxy reverso local na porta `20128`):
-* O Claude Code conversa com `http://localhost:20128`.
-* O OmniRoute recebe o pedido e encaminha para o **Combo** configurado.
+Siga este roteiro no **PowerShell** para criar um ambiente isolado em uma única pasta.
 
-### Provedores Conectados no seu Setup:
-* 🟢 **Google Gemini** (`main`)
-* 🟢 **Groq** (`main`)
-* 🟢 **Ollama Cloud** (`romulo_ollama`)
-* 🟢 **Grok / xAI** (OAuth)
-
-### Comandos Essenciais do OmniRoute (PowerShell):
+### Passo 1: Instalar o Node.js e Claude Code
+Se ainda não tiver o Node.js e o Claude Code instalados:
 ```powershell
-# Abrir o painel web de controle
-omniroute dashboard
+# 1. Instalar o Node.js LTS (caso necessário)
+winget install OpenJS.NodeJS.LTS
 
-# Testar se todos os provedores estão saudáveis
-omniroute providers test-all
+# 2. Instalar o Claude Code globalmente
+npm install -g @anthropic-ai/claude-code
 
-# Listar combos de roteamento ativos
-omniroute combo list
-
-# Ligar o OmniRoute no Claude Code da pasta atual
-.\omniroute-on.ps1
-
-# Desligar e voltar para a configuração padrão
-.\omniroute-off.ps1
+# 3. Instalar o OmniRoute globalmente
+npm install -g omniroute
 ```
 
 ---
 
-## 5. Claude Code no Terminal
+### Passo 2: Criar a Pasta do Projeto
+```powershell
+# Criar e entrar na pasta do projeto
+mkdir C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
 
-### O que é o `* Transfiguring...`?
-É a animação nativa do Claude Code indicando que ele está processando a resposta da LLM e avaliando as ferramentas disponíveis.
-
-### Cuidado com o Excesso de MCPs:
-Se houver muitos servidores MCP ativados, uma mensagem simples como *"olá"* pode enviar **mais de 140.000 tokens** de instruções de ferramentas, deixando as respostas mais lentas.
-
-### Comandos do Claude Code (Digite `/` no terminal):
-* `/` → Abre a lista suspensa com todos os comandos.
-* `/model` → Mostra o modelo ou combo em uso.
-* `/mcp` → Gerencia os servidores de ferramentas (desative os que não estiver usando para acelerar as respostas).
-* `/clear` → Limpa o histórico da sessão e reduz drasticamente o consumo de tokens.
-* `/cost` → Exibe estatísticas de tokens e custo da sessão.
-* `/help` → Mostra o manual de comandos.
+# Criar a subpasta oculta do Claude Code
+mkdir .claude
+```
 
 ---
 
-> 💡 **Regra Prática:** Mantenha o OmniRoute rodando com múltiplos provedores configurados, use `/clear` regularmente no Claude Code e utilize modelos ultrabaratos ou o Gemini direto para produtividade máxima sem surpresas de limite.
+### Passo 3: Criar o `.gitignore` de Segurança
+Crie o arquivo `.gitignore` para impedir que suas chaves de API sejam enviadas para o GitHub por engano:
+```powershell
+@'
+.claude/settings.local.json*
+*.env
+*.log
+*.sqlite*
+'@ | Out-File -FilePath .gitignore -Encoding utf8
+```
+
+---
+
+### Passo 4: Criar o arquivo de Configuração `.claude\settings.local.json`
+Este arquivo instrui o Claude Code a falar com o OmniRoute em `http://localhost:20128` usando o combo `gratuitos`:
+
+```powershell
+@'
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_AUTH_TOKEN": "sk-omniroute-local-token",
+    "ANTHROPIC_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "gratuitos",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "gratuitos",
+    "ENABLE_CLAUDEAI_MCP_SERVERS": "false"
+  },
+  "model": "gratuitos",
+  "disableClaudeAiConnectors": true
+}
+'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8
+```
+
+---
+
+### Passo 5: Iniciar o Gateway do OmniRoute e Validar
+Em uma janela de terminal, inicie o OmniRoute:
+```powershell
+omniroute serve
+```
+
+Para abrir o painel e gerenciar os provedores conectados:
+```powershell
+omniroute dashboard
+```
+
+---
+
+### Passo 6: Executar o Claude Code
+Dentro da pasta do projeto (`meu-projeto-ia`), basta rodar:
+```powershell
+claude
+```
+
+Pronto! O Claude Code iniciará conectado ao seu combo do OmniRoute.
+
+---
+
+## 4. Estrutura de Arquivos da Pasta
+
+Ao final do passo a passo, sua pasta terá a seguinte estrutura limpa e isolada:
+
+```
+meu-projeto-ia/
+│
+├── .claude/
+│   └── settings.local.json     # Aponta para o OmniRoute (localhost:20128)
+│
+├── .gitignore                  # Protege arquivos sensíveis e tokens
+├── TUTORIAL.md                 # Roteiro da aula
+└── index.html                  # Página web do projeto
+```
+
+---
+
+## 5. Configuração do Combo Multi-Provedor
+
+No painel do OmniRoute (`omniroute dashboard`):
+1. **Providers:** Conecte o **Google Gemini API**, **Groq** e **Ollama/OpenRouter**.
+2. **Combos:** Crie um combo com nome `gratuitos` e estratégia `fill-first`.
+3. Adicione os modelos na ordem de preferência:
+   * 1º `gemini-2.0-flash`
+   * 2º `groq/llama-3.3-70b`
+   * 3º `deepseek/deepseek-chat` (backup pago)
+
+---
+
+## 6. Operação no Terminal do Claude Code
+
+No prompt do Claude Code:
+* Digite `/` para ver a lista de comandos.
+* Use `/clear` regularmente para liberar tokens de contexto e acelerar respostas.
+* Use `/model` para confirmar o combo ativo.
+* Se aparecer `* Transfiguring...`, é o Claude Code processando o raciocínio e ferramentas.
+
+---
+*Material desenvolvido para as aulas de Inteligência Artificial — IFCE Caucaia.*

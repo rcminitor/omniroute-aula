@@ -49,10 +49,11 @@
         <ul class="nav-links">
           <li><a href="#agentes" class="active">1. Agentes de IA Locais</a></li>
           <li><a href="#custos">2. A Falácia do Grátis</a></li>
-          <li><a href="#fallback">3. Erro 429 & Fallback</a></li>
-          <li><a href="#omniroute">4. Setup OmniRoute</a></li>
-          <li><a href="#claude-code">5. Claude Code Prático</a></li>
-          <li><a href="#github-deploy">6. Publicar no GitHub</a></li>
+          <li><a href="#tutorial-pratico">3. Tutorial Pasta Única</a></li>
+          <li><a href="#fallback">4. Erro 429 & Fallback</a></li>
+          <li><a href="#omniroute">5. Setup OmniRoute</a></li>
+          <li><a href="#claude-code">6. Claude Code Prático</a></li>
+          <li><a href="#github-deploy">7. Links para Alunos</a></li>
         </ul>
       </div>
     </aside>
@@ -140,9 +141,79 @@
         </div>
       </section>
 
-      <!-- Section 3 -->
+      <!-- Section 3: Tutorial Prático Pasta Única -->
+      <section id="tutorial-pratico">
+        <h2><span class="num">3</span> Tutorial Prático: Criando o Ambiente em Pasta Única</h2>
+        <p>
+          Roteiro completo para criar um ambiente autônomo do <strong>OmniRoute + Claude Code</strong> dentro de uma única pasta isolada pelo terminal do PowerShell:
+        </p>
+
+        <div class="card-grid">
+          <div class="info-box">
+            <h3>Passo 1: Instalação das Ferramentas</h3>
+            <p>Instalação do Node.js LTS, Claude Code e OmniRoute globalmente no sistema.</p>
+          </div>
+          <div class="info-box">
+            <h3>Passo 2: Estrutura Isolada</h3>
+            <p>Criação da pasta do projeto e subpasta <code>.claude/</code> com <code>.gitignore</code> de proteção.</p>
+          </div>
+          <div class="info-box">
+            <h3>Passo 3: Gateway & Execução</h3>
+            <p>Configuração do <code>settings.local.json</code> para porta <code>20128</code> e execução do <code>claude</code>.</p>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>PowerShell - Passo a Passo em Pasta Única (Terminal)</span>
+            <button class="copy-btn" data-target="code-lab">Copiar</button>
+          </div>
+          <pre><code id="code-lab"># 1. Instalar o Claude Code e OmniRoute (se ainda não tiver)
+npm install -g @anthropic-ai/claude-code
+npm install -g omniroute
+
+# 2. Criar e entrar na pasta do projeto
+mkdir C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+mkdir .claude
+
+# 3. Criar .gitignore de segurança (não expor chaves no GitHub)
+@'
+.claude/settings.local.json*
+*.env
+*.log
+*.sqlite*
+'@ | Out-File -FilePath .gitignore -Encoding utf8
+
+# 4. Criar a configuração .claude\settings.local.json apontando para o OmniRoute
+@'
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_AUTH_TOKEN": "sk-omniroute-local-token",
+    "ANTHROPIC_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "gratuitos",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "gratuitos",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "gratuitos",
+    "ENABLE_CLAUDEAI_MCP_SERVERS": "false"
+  },
+  "model": "gratuitos",
+  "disableClaudeAiConnectors": true
+}
+'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8
+
+# 5. Iniciar o servidor OmniRoute (em segundo plano ou em outro terminal)
+omniroute serve
+
+# 6. Rodar o Claude Code na pasta do projeto!
+claude</code></pre>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
       <section id="fallback">
-        <h2><span class="num">3</span> Anatomia do Erro 429 & Roteamento em Cascata</h2>
+        <h2><span class="num">4</span> Anatomia do Erro 429 & Roteamento em Cascata</h2>
         <p>
           O código <strong>HTTP 429 (Too Many Requests)</strong> ocorre quando o limite diário da sua conta é atingido. No OpenRouter, o bloqueio ocorre na <strong>chave da conta inteira</strong> — portanto, alternar entre dois modelos <code>:free</code> na mesma conta não resolve.
         </p>
@@ -177,9 +248,9 @@
         </div>
       </section>
 
-      <!-- Section 4 -->
+      <!-- Section 5 -->
       <section id="omniroute">
-        <h2><span class="num">4</span> Arquitetura e Comandos do OmniRoute</h2>
+        <h2><span class="num">5</span> Arquitetura e Comandos do OmniRoute</h2>
         <p>
           O <strong>OmniRoute</strong> funciona como um gateway local (porta <code>20128</code>) que intercepta as chamadas do Claude Code ou Cursor e faz o roteamento automático entre os provedores conectados.
         </p>
@@ -206,9 +277,9 @@ omniroute combo list
         </div>
       </section>
 
-      <!-- Section 5 -->
+      <!-- Section 6 -->
       <section id="claude-code">
-        <h2><span class="num">5</span> Claude Code: Boas Práticas e Comandos</h2>
+        <h2><span class="num">6</span> Claude Code: Boas Práticas e Comandos</h2>
         <p>
           Ao utilizar o Claude Code conectado via OmniRoute, algumas práticas garantem respostas rápidas e evitam consumo excessivo de contexto:
         </p>
@@ -237,9 +308,9 @@ omniroute combo list
         </div>
       </section>
 
-      <!-- Section 6 -->
+      <!-- Section 7 -->
       <section id="github-deploy">
-        <h2><span class="num">6</span> Links para os Alunos e Publicação</h2>
+        <h2><span class="num">7</span> Links para os Alunos e Publicação</h2>
         <p>
           Compartilhe os links abaixo diretamente com os alunos para que eles acessem o repositório e a página online da aula:
         </p>
