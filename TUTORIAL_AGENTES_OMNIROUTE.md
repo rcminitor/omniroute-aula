@@ -119,7 +119,7 @@ Cria o arquivo `.claude\settings.local.json` apontando para o servidor local:
 
 ## 🔑 5. Chegou a Hora: Pegar as Chaves Gratuitas de API
 
-Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos sites oficiais e cadastrar no OmniRoute**:
+Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos sites oficiais**:
 
 ### 🟢 Opção 1: Google Gemini API (100% Gratuito Oficial)
 * 🔗 **Link direto:** [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
@@ -141,17 +141,43 @@ Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos 
 
 ---
 
-### ⚙️ Como cadastrar no OmniRoute:
-1. Abra o painel com o comando:
-   ```powershell
-   omniroute dashboard
-   ```
-2. Clique na aba lateral **"Providers"**.
-3. Cole a sua chave do Gemini ou Groq e clique em **Save**.
+## ⚙️ 6. Como Conectar os Provedores, Criar o Combo e Testar no OmniRoute
+
+### 🔹 Etapa A: Cadastrar os Provedores no Painel
+1. Abra o painel do OmniRoute no navegador (rode no terminal `omniroute dashboard` ou acesse `http://localhost:20128`).
+2. No menu da esquerda, clique em **"Providers"**.
+3. Clique em **"Add Provider"**, selecione **Google Gemini**, cole a chave `AIzaSy...` e clique em **Save/Connect**.
+4. Clique novamente em **"Add Provider"**, selecione **Groq**, cole a chave `gsk_...` e clique em **Save/Connect**.
 
 ---
 
-## 🚀 6. Ligar o Motor e Rodar o Claude Code
+### 🔹 Etapa B: Criar o Combo "gratuitos" (Roteamento com Fallback)
+1. No menu da esquerda do painel, clique em **"Combos"**.
+2. Clique no botão **"Create Combo"**.
+3. Em **Combo Name**, digite exatamente: `gratuitos`.
+4. Em **Strategy**, selecione: `fill-first`.
+5. Adicione os modelos:
+   * 1º lugar: `gemini-2.0-flash`
+   * 2º lugar: `groq/llama-3.3-70b-versatile`
+6. Clique em **Save / Enable Combo**.
+
+---
+
+### 🔹 Etapa C: Fazer o Teste de Saúde no Terminal (Antes de Chamar o Claude)
+No PowerShell, rode o teste:
+```powershell
+omniroute providers test-all
+```
+* **Resultado esperado:**
+  ```text
+  OK main (gemini): provider test passed
+  OK main (groq): provider test passed
+  ```
+  Se aparecer `OK passed`, tudo está funcionando e pronto para o Claude Code!
+
+---
+
+## 🚀 7. Ligar o Motor e Rodar o Claude Code
 
 ### 🔹 Passo 5: Ligar o Motor do OmniRoute (Janela 1)
 Nesta primeira janela do terminal, inicie o servidor:
@@ -173,14 +199,10 @@ claude
 
 ---
 
-## 👁️ 7. Telas Reais & Comandos Úteis
+## 🎥 8. Vídeos e Tutoriais de Apoio no YouTube
 
-* **O que é o `* Transfiguring...`?**
-  * É a animação normal do Claude Code indicando que ele está processando a resposta da LLM e avaliando as ferramentas do projeto.
-* **Comando `/clear`:**
-  * Se a conversa começar a demorar, digite `/clear` no terminal para limpar o histórico e acelerar as respostas.
-* **Menu de Comandos:**
-  * Digite apenas uma barra `/` no terminal para ver opções como `/model`, `/mcp`, `/cost` e `/help`.
+Para os alunos que preferem assistir à demonstração visual no YouTube:
+* 📺 **Pesquisa de Vídeos Tutoriais:** [https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial](https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial)
 
 ---
 *Material didático desenvolvido para o AGENT-LAB — IFCE Campus Caucaia.*

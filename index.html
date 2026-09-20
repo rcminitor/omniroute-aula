@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AGENT-LAB: Roteiro Completo de Aula - Agentes de IA & OmniRoute | IFCE</title>
-  <meta name="description" content="Roteiro cronológico e pedagógico para aula de laboratório: o que são agentes, a questão do almoço grátis, instalação de ferramentas, chaves de API e execução do Claude Code.">
+  <meta name="description" content="Roteiro cronológico e pedagógico para aula de laboratório: o que são agentes, a questão do almoço grátis, instalação de ferramentas, chaves de API, configuração de combos, testes e execução do Claude Code.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,8 @@
         <a href="#sobrevivencia">3. Regras de Terminal</a>
         <a href="#instalacao-passos">4. Instalar Projeto</a>
         <a href="#chaves-api">5. Pegar as Chaves</a>
-        <a href="#execucao-final">6. Ligar & Rodar</a>
+        <a href="#configurar-combo">6. Combos & Testes</a>
+        <a href="#execucao-final">7. Ligar & Rodar</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           github.com/rcminitor
@@ -53,9 +54,11 @@
           <li><a href="#sobrevivencia">3. 🚨 Regras do Terminal</a></li>
           <li><a href="#instalacao-passos">4. 💻 Mão na Massa: Instalação</a></li>
           <li><a href="#chaves-api">5. 🔑 Pegando as Chaves de API</a></li>
-          <li><a href="#execucao-final">6. 🚀 Ligar e Testar a IA</a></li>
-          <li><a href="#telas-dicas">7. 👁️ Telas Reais & Comandos</a></li>
-          <li><a href="#links-alunos">8. 🔗 Links e Materiais</a></li>
+          <li><a href="#configurar-combo">6. ⚙️ Como Criar o Combo & Testar</a></li>
+          <li><a href="#execucao-final">7. 🚀 Ligar e Testar a IA</a></li>
+          <li><a href="#telas-dicas">8. 👁️ Telas Reais & Comandos</a></li>
+          <li><a href="#video-apoio">9. 🎥 Vídeo de Apoio</a></li>
+          <li><a href="#links-alunos">10. 🔗 Links e Materiais</a></li>
         </ul>
       </div>
     </aside>
@@ -68,7 +71,7 @@
         <span class="badge-tag">AGENT-LAB · IFCE Caucaia</span>
         <h1>Agentes de IA & OmniRoute no Laboratório</h1>
         <p class="hero-subtitle">
-          Roteiro pedagógico completo para a aula de laboratório: entenda as ferramentas, a realidade de custos em IA, prepare seu ambiente, cadastre as chaves no momento certo e execute o Claude Code.
+          Roteiro pedagógico completo para a aula de laboratório: entenda as ferramentas, a realidade de custos em IA, prepare seu ambiente, cadastre as chaves, crie seu combo de fallback e execute o Claude Code.
         </p>
       </div>
 
@@ -105,7 +108,7 @@
         <div class="card info-box alert-box">
           <h3>⚠️ Por que o 100% grátis na nuvem trava? (O Erro 429)</h3>
           <p>
-            Rodar Inteligência Artificial exige computadores caríssimos com supercomputadores (GPUs H100). Plataformas como o OpenRouter dão modelos <code>:free</code> apenas para pequenos testes. Como o agente faz 40 chamadas em 5 minutos, a cota diária zera e aparece o erro:
+            Rodar Inteligência Artificial exige supercomputadores com placas de vídeo caras (GPUs H100). Plataformas como o OpenRouter dão modelos <code>:free</code> apenas para pequenos testes. Como o agente faz 40 chamadas em 5 minutos, a cota diária zera e aparece o erro:
             <br><br>
             <code style="color:#ef4444; background: rgba(0,0,0,0.5); padding: 0.3rem 0.6rem;">API Error: Request rejected (429) · Rate limit exceeded: free-models-per-day</code>
           </p>
@@ -321,7 +324,7 @@ mkdir .claude -Force</code></pre>
       <section id="chaves-api">
         <h2><span class="num">5</span> 🔑 Chegou a Hora: Pegar as Chaves Gratuitas de API</h2>
         <p>
-          Agora que a estrutura do seu projeto já está pronta, <strong>vamos pegar as chaves nos sites oficiais e cadastrar no OmniRoute</strong>. Clique nos botões abaixo:
+          Agora que a estrutura do seu projeto já está pronta, <strong>vamos pegar as chaves nos sites oficiais</strong>. Clique nos botões abaixo:
         </p>
 
         <div class="card-grid">
@@ -380,39 +383,88 @@ mkdir .claude -Force</code></pre>
             </a>
           </div>
 
-          <!-- Card OmniRoute Dashboard -->
-          <div class="portal-card" style="border-top: 3px solid var(--accent-primary);">
-            <div>
-              <div class="portal-header">
-                <div class="portal-icon" style="background: rgba(139, 92, 246, 0.2); color: var(--accent-primary);">⚙️</div>
-                <div>
-                  <h3 style="margin:0;">3. Cadastrar no OmniRoute</h3>
-                  <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">Painel de Controle</span>
-                </div>
-              </div>
-
-              <div class="steps-list">
-                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Como salvar as chaves:</p>
-                <ol>
-                  <li>Abra o painel com <code>omniroute dashboard</code>.</li>
-                  <li>Vá na aba <strong>"Providers"</strong>.</li>
-                  <li>Cole a chave do Gemini ou Groq e clique em <strong>Save</strong>.</li>
-                </ol>
-              </div>
-            </div>
-
-            <a href="http://localhost:20128" target="_blank" class="btn-open-site">
-              Abrir Painel Local (Porta 20128) ↗
-            </a>
-          </div>
-
         </div>
       </section>
 
-      <!-- Section 6: Ligar o Motor e Executar -->
+      <!-- Section 6: Configurando o OmniRoute e Criando o Combo -->
+      <section id="configurar-combo">
+        <h2><span class="num">6</span> ⚙️ Como Cadastrar Provedores, Criar o Combo e Fazer o Teste</h2>
+        <p>
+          Agora vamos conectar as chaves que você copiou, criar o <strong>Combo de Fallback</strong> e testar se tudo responde antes de chamar o Claude.
+        </p>
+
+        <!-- Passo A: Conectar Provedores -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">ETAPA A</span>
+            <h3>Cadastrar os Provedores no Painel</h3>
+          </div>
+          <p>
+            1. Abra o painel do OmniRoute no navegador clicando no botão abaixo (ou rode <code>omniroute dashboard</code> no terminal):
+          </p>
+          <div style="margin: 1rem 0;">
+            <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);">
+              Abrir Painel OmniRoute (localhost:20128) ↗
+            </a>
+          </div>
+          <div class="steps-list">
+            <ol>
+              <li>No menu da esquerda do painel, clique em <strong>"Providers"</strong>.</li>
+              <li>Clique em <strong>"Add Provider"</strong>, selecione <strong>Google Gemini</strong>, cole a chave <code>AIzaSy...</code> e clique em <strong>Save/Connect</strong>.</li>
+              <li>Clique novamente em <strong>"Add Provider"</strong>, selecione <strong>Groq</strong>, cole a chave <code>gsk_...</code> e clique em <strong>Save/Connect</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Passo B: Criar o Combo -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">ETAPA B</span>
+            <h3>Criar o Combo "gratuitos" (Roteamento com Fallback)</h3>
+          </div>
+          <p>O combo é a lista de prioridades que faz o transbordo automático se um provedor travar:</p>
+          <div class="steps-list">
+            <ol>
+              <li>No menu lateral do painel, clique em <strong>"Combos"</strong>.</li>
+              <li>Clique no botão <strong>"Create Combo"</strong>.</li>
+              <li>Em <strong>Combo Name</strong>, digite exatamente: <code style="color:var(--accent-cyan); font-weight:700;">gratuitos</code></li>
+              <li>Em <strong>Strategy</strong>, escolha: <code style="color:var(--accent-emerald); font-weight:700;">fill-first</code> (tenta o 1º, se falhar pula pro 2º).</li>
+              <li>Adicione os modelos na ordem:
+                <ul>
+                  <li>1º lugar: <code>gemini-2.0-flash</code></li>
+                  <li>2º lugar: <code>groq/llama-3.3-70b-versatile</code></li>
+                </ul>
+              </li>
+              <li>Clique em <strong>Save Combo / Enable</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Passo C: Testar Conexão -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">ETAPA C</span>
+            <h3>Fazer o Teste de Validação no Terminal</h3>
+          </div>
+          <p>Antes de abrir o Claude Code, rode este comando no PowerShell para testar se todos os provedores estão respondendo:</p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell - Teste de Saúde dos Provedores</span>
+              <button class="copy-btn" data-target="code-test-providers">Copiar Teste</button>
+            </div>
+            <pre><code id="code-test-providers">omniroute providers test-all</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Resultado esperado:</strong> Deve aparecer <code>OK main (gemini): provider test passed</code> e <code>OK main (groq): provider test passed</code> em verde!
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Ligar o Motor e Executar -->
       <section id="execucao-final">
-        <h2><span class="num">6</span> 🚀 Ligar o Motor e Rodar o Claude Code</h2>
-        <p>Com as chaves cadastradas, vamos colocar tudo para rodar em 2 passos simples:</p>
+        <h2><span class="num">7</span> 🚀 Ligar o Motor e Rodar o Claude Code</h2>
+        <p>Com tudo testado e verificado, vamos colocar tudo para rodar em 2 passos simples:</p>
 
         <!-- Passo 5 -->
         <div class="step-container">
@@ -459,9 +511,9 @@ claude</code></pre>
         </div>
       </section>
 
-      <!-- Section 7: Telas Reais e Boas Práticas -->
+      <!-- Section 8: Telas Reais e Boas Práticas -->
       <section id="telas-dicas">
-        <h2><span class="num">7</span> 👁️ Telas Reais & Comandos Úteis</h2>
+        <h2><span class="num">8</span> 👁️ Telas Reais & Comandos Úteis</h2>
 
         <div class="mock-terminal">
           <div class="mock-terminal-header">
@@ -499,9 +551,35 @@ claude</code></pre>
         </div>
       </section>
 
-      <!-- Section 8: Links da Turma -->
+      <!-- Section 9: Vídeo de Apoio -->
+      <section id="video-apoio">
+        <h2><span class="num">9</span> 🎥 Vídeos e Tutoriais de Apoio no YouTube</h2>
+        <p>
+          Para os alunos visuais que preferem assistir à demonstração na prática, confira os tutoriais recomendados no YouTube:
+        </p>
+
+        <div class="card-grid">
+          <div class="info-box tip-box">
+            <h3>📺 Tutoriais OmniRoute & Claude Code</h3>
+            <p style="margin-bottom:0.75rem;">Assista aos vídeos demonstrando a instalação do OmniRoute, conexão de múltiplos modelos e resolução de erros de token:</p>
+            <a href="https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+              Assistir Vídeos no YouTube ↗
+            </a>
+          </div>
+
+          <div class="info-box">
+            <h3>📖 Documentação Oficial do OmniRoute</h3>
+            <p style="margin-bottom:0.75rem;">Consulte os detalhes técnicos de combos, compressão de tokens e proxies OpenAI-compatíveis no repositório oficial:</p>
+            <a href="https://github.com/danny-avila/LibreChat" target="_blank" class="btn-open-site">
+              Ver no GitHub ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 10: Links da Turma -->
       <section id="links-alunos">
-        <h2><span class="num">8</span> 🔗 Links Oficiais para a Turma</h2>
+        <h2><span class="num">10</span> 🔗 Links Oficiais para a Turma</h2>
 
         <div class="card-grid">
           <div class="info-box success-box">
