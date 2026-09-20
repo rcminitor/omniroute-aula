@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Agentes de IA, OmniRoute e Gestão de LLMs</title>
+  <meta name="description" content="Tutorial completo sobre arquitetura de agentes de IA locais, mitigação do erro 429, roteamento multi-provedor com OmniRoute e Claude Code.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-badge">AGENT-LAB</span>
+        <span>OmniRoute & IA Guide</span>
+      </a>
+      <div class="header-links">
+        <a href="#agentes">Agentes</a>
+        <a href="#custos">Custos & Limites</a>
+        <a href="#fallback">Fallback (429)</a>
+        <a href="#omniroute">OmniRoute</a>
+        <a href="#claude-code">Claude Code</a>
+        <a href="https://github.com" target="_blank" class="btn-github">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <aside>
+      <div class="sidebar-box">
+        <div class="sidebar-title">Sumário do Guia</div>
+        <ul class="nav-links">
+          <li><a href="#agentes" class="active">1. Agentes de IA Locais</a></li>
+          <li><a href="#custos">2. A Falácia do Grátis</a></li>
+          <li><a href="#fallback">3. Erro 429 & Fallback</a></li>
+          <li><a href="#omniroute">4. Setup OmniRoute</a></li>
+          <li><a href="#claude-code">5. Claude Code Prático</a></li>
+          <li><a href="#github-deploy">6. Publicar no GitHub</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      
+      <!-- Hero -->
+      <div class="hero">
+        <span class="badge-tag">Guia Técnico & Prático</span>
+        <h1>Agentes de IA, OmniRoute e Gestão de LLMs</h1>
+        <p class="hero-subtitle">
+          Entenda como funcionam os agentes autônomos locais, como eliminar erros de cota (429) com roteamento em cascata e como usar múltiplos provedores com eficiência máxima.
+        </p>
+      </div>
+
+      <!-- Section 1 -->
+      <section id="agentes">
+        <h2><span class="num">1</span> O que são Agentes de IA?</h2>
+        <p>
+          Diferente de assistentes de chat comuns em que você precisa copiar e colar código, um <strong>Agente de Desenvolvimento Autônomo</strong> tem acesso direto ao sistema de arquivos e ao terminal da sua máquina para realizar tarefas de ponta a ponta.
+        </p>
+
+        <div class="card-grid">
+          <div class="info-box">
+            <h3>📂 Leitura Cirúrgica</h3>
+            <p>Varre arquivos, analisa estruturas de diretórios e extrai o contexto exato do repositório sem alucinações.</p>
+          </div>
+          <div class="info-box">
+            <h3>⚡ Edição Direta no Disco</h3>
+            <p>Altera e cria código nos arquivos locais preservando comentários, padrões de formatação e arquitetura existente.</p>
+          </div>
+          <div class="info-box">
+            <h3>💻 Execução no Terminal</h3>
+            <p>Roda comandos PowerShell/Bash, suítes de testes, linters e compilações, corrigindo erros automaticamente.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="custos">
+        <h2><span class="num">2</span> A Falácia do "Almoço 100% Grátis"</h2>
+        <p>
+          No ecossistema de Inteligência Artificial na nuvem, não existe computação ilimitada gratuita. Modelos como Claude 3.5 Sonnet ou GPT-4o exigem clusters de GPUs com altíssimo custo operacional.
+        </p>
+
+        <div class="card info-box alert-box">
+          <h3>⚠️ A armadilha dos modelos <code>:free</code></h3>
+          <p>
+            Provedores como o OpenRouter disponibilizam modelos gratuitos para <em>degustação e testes rápidos</em>. Quando um agente autônomo executa um loop de desenvolvimento (fazendo 30 a 50 chamadas de API em poucos minutos), a cota gratuita do dia é esgotada quase que instantaneamente, gerando o bloqueio <code>429</code>.
+          </p>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Abordagem</th>
+                <th>Custo Médio</th>
+                <th>Estabilidade</th>
+                <th>Veredito</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Modelos <code>:free</code> na Nuvem</strong></td>
+                <td>R$ 0,00</td>
+                <td>Baixa (Erro 429 constante)</td>
+                <td>Frustrante para uso diário em agentes.</td>
+              </tr>
+              <tr>
+                <td><strong>Modelos Locais (Ollama)</strong></td>
+                <td>R$ 0,00 real</td>
+                <td>Alta (Roda na sua RAM)</td>
+                <td>Excelente para privacidade e sem limite de requisições.</td>
+              </tr>
+              <tr>
+                <td><strong>Pay-as-you-go Ultrabarato</strong></td>
+                <td>R$ 5 a R$ 15 / mês</td>
+                <td>Máxima (Sem bloqueios)</td>
+                <td>Melhor custo-benefício (DeepSeek / Gemini Flash).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="fallback">
+        <h2><span class="num">3</span> Anatomia do Erro 429 & Roteamento em Cascata</h2>
+        <p>
+          O código <strong>HTTP 429 (Too Many Requests)</strong> ocorre quando o limite diário da sua conta é atingido. No OpenRouter, o bloqueio ocorre na <strong>chave da conta inteira</strong> — portanto, alternar entre dois modelos <code>:free</code> na mesma conta não resolve.
+        </p>
+
+        <h3>O Fluxo de Contingência (Fallback Real)</h3>
+        <p>A solução definitiva é configurar múltiplos provedores independentes em ordem de prioridade (estratégia <code>fill-first</code>):</p>
+
+        <div class="architecture-diagram">
+          <div class="flow-step">
+            <div class="step-icon" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">1</div>
+            <div>
+              <strong>Google Gemini (Google AI Studio)</strong>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Cota gratuita generosa direta do provedor oficial.</p>
+            </div>
+          </div>
+          <div class="flow-arrow">▼ (Se atingir limite 429)</div>
+          <div class="flow-step">
+            <div class="step-icon" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">2</div>
+            <div>
+              <strong>Groq Cloud (Llama 3.3 70B)</strong>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Inferência em hardware LPU de altíssima velocidade.</p>
+            </div>
+          </div>
+          <div class="flow-arrow">▼ (Se atingir limite)</div>
+          <div class="flow-step">
+            <div class="step-icon" style="background: rgba(139, 92, 246, 0.2); color: #c084fc;">3</div>
+            <div>
+              <strong>DeepSeek / OpenRouter com Saldo Mínimo</strong>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Rede de segurança que conclui a tarefa custando frações de centavos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="omniroute">
+        <h2><span class="num">4</span> Arquitetura e Comandos do OmniRoute</h2>
+        <p>
+          O <strong>OmniRoute</strong> funciona como um gateway local (porta <code>20128</code>) que intercepta as chamadas do Claude Code ou Cursor e faz o roteamento automático entre os provedores conectados.
+        </p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>PowerShell - Comandos Essenciais do OmniRoute</span>
+            <button class="copy-btn" data-target="code-omniroute">Copiar</button>
+          </div>
+          <pre><code id="code-omniroute"># 1. Abrir o painel web de gerenciamento
+omniroute dashboard
+
+# 2. Testar saúde de todos os provedores conectados
+omniroute providers test-all
+
+# 3. Listar combos de roteamento ativos
+omniroute combo list
+
+# 4. Ativar o OmniRoute no Claude Code do projeto atual
+.\omniroute-on.ps1
+
+# 5. Desativar e voltar para a configuração padrão
+.\omniroute-off.ps1</code></pre>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section id="claude-code">
+        <h2><span class="num">5</span> Claude Code: Boas Práticas e Comandos</h2>
+        <p>
+          Ao utilizar o Claude Code conectado via OmniRoute, algumas práticas garantem respostas rápidas e evitam consumo excessivo de contexto:
+        </p>
+
+        <div class="card-grid">
+          <div class="info-box success-box">
+            <h3>* Transfiguring...</h3>
+            <p>É a animação normal do Claude Code indicando que ele está processando a resposta e organizando as ferramentas.</p>
+          </div>
+          <div class="info-box alert-box">
+            <h3>Atenção aos MCPs</h3>
+            <p>Servidores MCP sem autenticação ou em excesso podem enviar até <strong>150.000 tokens</strong> em uma saudação simples.</p>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>Comandos no Terminal do Claude Code</span>
+            <button class="copy-btn" data-target="code-claude">Copiar</button>
+          </div>
+          <pre><code id="code-claude">/       # Abre o menu interativo com todas as opções
+/model  # Exibe o modelo ou combo ativo (ex: gratuitos)
+/mcp    # Gerencia e desativa servidores MCP pesados
+/clear  # Limpa o histórico da sessão e acelera as respostas
+/cost   # Mostra o consumo de tokens e estatísticas</code></pre>
+        </div>
+      </section>
+
+      <!-- Section 6 -->
+      <section id="github-deploy">
+        <h2><span class="num">6</span> Como Subir este Tutorial ao GitHub</h2>
+        <p>
+          Para publicar este tutorial no seu GitHub (inclusive com <strong>GitHub Pages</strong> gratuito), execute os comandos abaixo no seu PowerShell:
+        </p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>PowerShell - Publicação no GitHub</span>
+            <button class="copy-btn" data-target="code-git">Copiar</button>
+          </div>
+          <pre><code id="code-git"># 1. Inicializar o repositório Git (se ainda não estiver inicializado)
+git init
+
+# 2. Adicionar os arquivos do tutorial
+git add index.html styles.css script.js TUTORIAL_AGENTES_OMNIROUTE.md .gitignore
+
+# 3. Criar o primeiro commit
+git commit -m "feat: adicionar guia completo de Agentes de IA e OmniRoute"
+
+# 4. Vincular com o seu repositório no GitHub (substitua com a sua URL)
+git branch -M main
+git remote add origin https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
+
+# 5. Enviar para o GitHub
+git push -u origin main</code></pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Guia de Agentes de IA & OmniRoute · Desenvolvido no Antigravity com Gemini · Pronto para GitHub Pages</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast">Copiado com sucesso!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

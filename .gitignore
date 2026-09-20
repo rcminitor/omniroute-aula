@@ -1,0 +1,12 @@
+# Configurações com chaves e tokens locais
+.claude/settings.local.json*
+*.bak-*
+*.sqlite*
+*.log
+storage.sqlite*
+.env
+
+# Backups e temporários
+backups/
+node_modules/
+.omniroute/
