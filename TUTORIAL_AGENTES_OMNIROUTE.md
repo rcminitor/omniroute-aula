@@ -1,4 +1,4 @@
-# 📘 AGENT-LAB: Guia Completo de Agentes de IA, OmniRoute e Claude Code
+# 📘 AGENT-LAB: Roteiro Completo de Aula - Agentes de IA & OmniRoute
 
 > **Instituto Federal do Ceará (IFCE) — Campus Caucaia**  
 > **Disciplina de Inteligência Artificial — Prof. Romulo Cesar** (`romulo.cesar@ifce.edu.br`)  
@@ -7,9 +7,32 @@
 
 ---
 
-## 🚨 1. Guia Rápido de Sobrevivência no Terminal (Leia Antes de Começar!)
+## 🤖 1. As Ferramentas da Aula (O que vamos usar hoje?)
 
-Se você nunca usou o terminal ou não tem computador em casa, **não se preocupe!** Guarde estas 4 regras simples:
+Hoje não usaremos um chat comum. Usaremos um **Agente de Desenvolvimento Autônomo** que opera diretamente no computador:
+* **Claude Code:** O cérebro da aula. Roda no terminal, lê seus arquivos, escreve código e executa testes.
+* **OmniRoute:** O roteador da aula (porta `20128`). Recebe os pedidos e escolhe a IA gratuita disponível.
+* **Provedores de IA:** As plataformas que fornecem os modelos oficiais gratuitos (Google Gemini e Groq Cloud com Llama 3).
+
+---
+
+## 💸 2. A Falácia do "Almoço 100% Grátis" em IA & Erro 429
+
+Muitos tutoriais prometem *"Use Claude Code 100% grátis para sempre via OpenRouter"*. Na prática, isso esbarra em limites técnicos:
+
+1. **Inferência é cara:** Rodar modelos de ponta exige clusters de GPUs (H100) com alto consumo de hardware e energia.
+2. **Modelos `:free` são para testes rápidos:** O OpenRouter limita contas gratuitas a poucas requisições por dia.
+3. **O Erro 429:** Um agente faz 40 chamadas em 5 minutos, esgotando a cota diária e gerando o erro `429 (Rate limit exceeded)`.
+
+### A Solução: Roteamento com Fallback (Transbordo)
+Para não travar sua aula, conectamos múltiplos provedores no OmniRoute:
+1. 🟢 **Google Gemini** (1ª escolha: cota gratuita generosa direta do Google).
+2. 🟢 **Groq Cloud** (2ª escolha: Llama 3.3 em chips ultra-rápidos).
+3. 🟢 **DeepSeek / Centavos** (Rede de segurança para quem tiver saldo mínimo).
+
+---
+
+## 🚨 3. Regras de Sobrevivência no Terminal (Antes de Mexer no Teclado)
 
 1. **🖱️ Como colar no terminal:** Copie o comando desejado. Na tela preta do PowerShell, basta dar **um clique com o botão direito do mouse** que o texto cola automaticamente.
 2. **🪟 O segredo das 2 janelas pretas:** O OmniRoute precisa de **duas janelas abertas ao mesmo tempo**:
@@ -20,61 +43,16 @@ Se você nunca usou o terminal ou não tem computador em casa, **não se preocup
 
 ---
 
-## 📖 2. Dicionário do Aluno (Em linguagem do dia a dia)
-
-| Nome Técnico | Analogia da Vida Real | O que ele faz no computador? |
-| :--- | :--- | :--- |
-| **Agente de IA (Claude Code)** | Um estagiário de programação muito rápido. | Lê seus arquivos locais, escreve código e roda testes na máquina. |
-| **OmniRoute** | Um roteador Wi-Fi inteligente. | Fica na porta `20128` e escolhe qual IA gratuita responderá seu comando. |
-| **API** | O garçom de um restaurante. | Leva o seu pedido até o servidor da IA e traz a resposta de volta. |
-| **Tokens** | Contagem de palavras do SMS. | É a quantidade de texto que a IA lê e escreve por segundo. |
-| **Fallback (Transbordo)** | O plano B da caixa d'água. | Se o Gemini bater o limite, pula para o Groq sozinho sem travar sua aula. |
-
----
-
-## 💸 3. A Falácia do "Almoço 100% Grátis" em IA
-
-Muitos tutoriais prometem *"Use Claude Code 100% grátis para sempre via OpenRouter"*. Na prática, isso esbarra em limites técnicos:
-
-1. **Inferência é cara:** Rodar modelos de ponta exige clusters de GPUs (H100) com alto consumo elétrico e de hardware.
-2. **Modelos `:free` são para degustação:** O OpenRouter limita contas gratuitas a poucas dezenas de requisições por dia.
-3. **Agentes consomem muito:** Uma única tarefa de agente pode fazer 30 a 50 chamadas de API em loop, esgotando cotas gratuitas em minutos.
-
-### As Três Abordagens Reais:
-| Abordagem | Custo Médio | Estabilidade | Veredito |
-| :--- | :--- | :--- | :--- |
-| **Modelos `:free` na Nuvem** | R$ 0,00 | Baixa (Erro 429 constante) | Frustrante para uso diário em agentes. |
-| **Modelos Locais (Ollama)** | R$ 0,00 real | Alta (Roda na sua RAM) | Excelente para privacidade e sem limite de requisições. |
-| **Pay-as-you-go Ultrabarato** | R$ 5 a R$ 15 / mês | Máxima (Sem bloqueios) | Melhor custo-benefício (DeepSeek / Gemini Flash). |
-
----
-
-## 🔄 4. Anatomia do Erro 429 & Roteamento em Cascata (Fallback)
-
-### O que significa?
-> `API Error: Request rejected (429) · Rate limit exceeded: free-models-per-day`
-
-* **Código 429:** *Too Many Requests* (Limite de requisições atingido).
-* **Bloqueio por Conta:** No OpenRouter, o limite de modelos gratuitos é aplicado à **sua chave inteira**. Se um modelo gratuito travar, todos os outros modelos gratuitos daquela chave travam juntos.
-
-### A Solução: Fallback Multi-Provedor
-Para o sistema pular automaticamente para outra IA quando uma atingir o limite, os modelos devem vir de **provedores independentes**:
-1. 🟢 **Google Gemini** (Google AI Studio - grátis e cota generosa).
-2. 🟢 **Groq Cloud** (Llama 3.3 70B - ultra-rápido).
-3. 🟢 **DeepSeek / OpenRouter com centavos** (Rede de segurança para nunca travar).
-
----
-
-## 💻 5. Passo a Passo no Terminal (Pasta Única)
+## 💻 4. Mão na Massa: Instalando Ferramentas e Criando o Projeto
 
 ### 🔹 Passo 0: Testar se o Node.js e o npm existem no computador
-O comando `npm` não existe sozinho no Windows; ele vem **dentro do pacote do Node.js**. Teste se o computador já tem o Node instalado:
+O comando `npm` não existe sozinho no Windows; ele vem **dentro do pacote do Node.js**. Abra o PowerShell e teste:
 
 ```powershell
 node -v
 ```
 
-* **✅ Se apareceu um número (ex: `v20.x` ou `v22.x`):** O Node.js e o npm já estão instalados! Pule direto para o **Passo 2**.
+* **✅ Se apareceu um número (ex: `v20.x` ou `v22.x`):** O Node.js e o npm já estão instalados! Pule direto para o **Passo 1**.
 * **❌ Se deu erro vermelho de comando não reconhecido:** O computador não tem Node.js. Instale com o comando:
   ```powershell
   winget install OpenJS.NodeJS.LTS
@@ -139,27 +117,9 @@ Cria o arquivo `.claude\settings.local.json` apontando para o servidor local:
 
 ---
 
-### 🔹 Passo 5: Ligar o Motor do OmniRoute (Janela 1)
-Nesta primeira janela do terminal, inicie o servidor:
-```powershell
-omniroute serve
-```
-> ⚠️ **Atenção:** Esta janela vai ficar ocupada mostrando logs do servidor. **NÃO FECHE ESTA JANELA.**
+## 🔑 5. Chegou a Hora: Pegar as Chaves Gratuitas de API
 
----
-
-### 🔹 Passo 6: Abrir a Segunda Janela e Rodar o Claude Code (Janela 2)
-1. Abra uma **nova janela** do PowerShell (tecla Windows + digite `powershell`).
-2. Entre na pasta do seu projeto e chame o Claude:
-```powershell
-cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
-claude
-```
-* **Resultado esperado:** O Claude Code iniciará exibindo o logotipo laranja e o modelo `gratuitos with high effort` pronto para suas perguntas e comandos!
-
----
-
-## 🔑 6. Onde Pegar as Chaves de API Gratuitas
+Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos sites oficiais e cadastrar no OmniRoute**:
 
 ### 🟢 Opção 1: Google Gemini API (100% Gratuito Oficial)
 * 🔗 **Link direto:** [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
@@ -181,7 +141,7 @@ claude
 
 ---
 
-### ⚙️ Como colocar as chaves no OmniRoute:
+### ⚙️ Como cadastrar no OmniRoute:
 1. Abra o painel com o comando:
    ```powershell
    omniroute dashboard
@@ -191,18 +151,36 @@ claude
 
 ---
 
-## ⚡ 7. Claude Code: Comandos e Boas Práticas
+## 🚀 6. Ligar o Motor e Rodar o Claude Code
+
+### 🔹 Passo 5: Ligar o Motor do OmniRoute (Janela 1)
+Nesta primeira janela do terminal, inicie o servidor:
+```powershell
+omniroute serve
+```
+> ⚠️ **Atenção:** Esta janela vai ficar ocupada mostrando logs do servidor. **NÃO FECHE ESTA JANELA.**
+
+---
+
+### 🔹 Passo 6: Abrir a Segunda Janela e Rodar o Claude Code (Janela 2)
+1. Abra uma **nova janela** do PowerShell (tecla Windows + digite `powershell`).
+2. Entre na pasta do seu projeto e chame o Claude:
+```powershell
+cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+claude
+```
+* **Resultado esperado:** O Claude Code iniciará exibindo o logotipo laranja e o modelo `gratuitos with high effort` pronto para suas perguntas e comandos!
+
+---
+
+## 👁️ 7. Telas Reais & Comandos Úteis
 
 * **O que é o `* Transfiguring...`?**
   * É a animação normal do Claude Code indicando que ele está processando a resposta da LLM e avaliando as ferramentas do projeto.
-* **Cuidado com MCPs em Excesso:**
-  * Servidores MCP sem autenticação ou em excesso podem enviar até **150.000 tokens** em uma saudação simples, atrasando a resposta.
-* **Comandos no Terminal do Claude Code:**
-  * `/` → Abre o menu interativo com todas as opções.
-  * `/model` → Exibe o modelo ou combo ativo (ex: gratuitos).
-  * `/mcp` → Gerencia e desativa servidores MCP pesados.
-  * `/clear` → Limpa o histórico da sessão e acelera as respostas.
-  * `/cost` → Mostra o consumo de tokens e estatísticas.
+* **Comando `/clear`:**
+  * Se a conversa começar a demorar, digite `/clear` no terminal para limpar o histórico e acelerar as respostas.
+* **Menu de Comandos:**
+  * Digite apenas uma barra `/` no terminal para ver opções como `/model`, `/mcp`, `/cost` e `/help`.
 
 ---
 *Material didático desenvolvido para o AGENT-LAB — IFCE Campus Caucaia.*

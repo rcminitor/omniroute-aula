@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AGENT-LAB: Guia Completo de Agentes de IA, OmniRoute e Claude Code | IFCE</title>
-  <meta name="description" content="Portal completo de laboratório sobre Agentes de IA, a falácia do grátis, resolução do erro 429 com fallback, configuração do OmniRoute e Claude Code no terminal.">
+  <title>AGENT-LAB: Roteiro Completo de Aula - Agentes de IA & OmniRoute | IFCE</title>
+  <meta name="description" content="Roteiro cronológico e pedagógico para aula de laboratório: o que são agentes, a questão do almoço grátis, instalação de ferramentas, chaves de API e execução do Claude Code.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,18 +23,15 @@
     <div class="header-inner">
       <a href="#" class="logo">
         <span class="logo-badge">AGENT-LAB</span>
-        <span>IFCE Caucaia · IA & OmniRoute</span>
+        <span>IFCE Caucaia · Roteiro de Aula</span>
       </a>
-      <!-- Header Links -->
       <div class="header-links">
-        <a href="#agentes">🤖 Agentes</a>
-        <a href="#sobrevivencia">🚨 Sobrevivência</a>
-        <a href="#dicionario">📖 Dicionário</a>
-        <a href="#falacia-gratis">💸 Almoço Grátis</a>
-        <a href="#fallback">🔄 Fallback 429</a>
-        <a href="#tutorial-passo-a-passo">💻 Passo a Passo</a>
-        <a href="#chaves">🔑 Chaves API</a>
-        <a href="#claude-boas-praticas">⚡ Claude Code</a>
+        <a href="#ferramentas">1. As Ferramentas</a>
+        <a href="#falacia-gratis">2. Almoço Grátis & 429</a>
+        <a href="#sobrevivencia">3. Regras de Terminal</a>
+        <a href="#instalacao-passos">4. Instalar Projeto</a>
+        <a href="#chaves-api">5. Pegar as Chaves</a>
+        <a href="#execucao-final">6. Ligar & Rodar</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           github.com/rcminitor
@@ -49,18 +46,16 @@
     <!-- Sidebar -->
     <aside>
       <div class="sidebar-box">
-        <div class="sidebar-title">Sumário Completo</div>
+        <div class="sidebar-title">Roteiro da Aula</div>
         <ul class="nav-links">
-          <li><a href="#agentes" class="active">1. 🤖 O que são Agentes?</a></li>
-          <li><a href="#sobrevivencia">2. 🚨 Regras de Sobrevivência</a></li>
-          <li><a href="#dicionario">3. 📖 Dicionário do Aluno</a></li>
-          <li><a href="#falacia-gratis">4. 💸 A Falácia do "Grátis"</a></li>
-          <li><a href="#fallback">5. 🔄 Erro 429 & Fallback</a></li>
-          <li><a href="#tutorial-passo-a-passo">6. 💻 Passo a Passo no Terminal</a></li>
-          <li><a href="#chaves">7. 🔑 Onde Pegar as Chaves</a></li>
-          <li><a href="#claude-boas-praticas">8. ⚡ Claude Code & MCPs</a></li>
-          <li><a href="#visual-terminal">9. 👁️ Telas e Janelas Reais</a></li>
-          <li><a href="#links-alunos">10. 🔗 Links e Materiais</a></li>
+          <li><a href="#ferramentas" class="active">1. 🤖 As Ferramentas da Aula</a></li>
+          <li><a href="#falacia-gratis">2. 💸 A Falácia do "Grátis" & 429</a></li>
+          <li><a href="#sobrevivencia">3. 🚨 Regras do Terminal</a></li>
+          <li><a href="#instalacao-passos">4. 💻 Mão na Massa: Instalação</a></li>
+          <li><a href="#chaves-api">5. 🔑 Pegando as Chaves de API</a></li>
+          <li><a href="#execucao-final">6. 🚀 Ligar e Testar a IA</a></li>
+          <li><a href="#telas-dicas">7. 👁️ Telas Reais & Comandos</a></li>
+          <li><a href="#links-alunos">8. 🔗 Links e Materiais</a></li>
         </ul>
       </div>
     </aside>
@@ -73,206 +68,124 @@
         <span class="badge-tag">AGENT-LAB · IFCE Caucaia</span>
         <h1>Agentes de IA & OmniRoute no Laboratório</h1>
         <p class="hero-subtitle">
-          Guia prático e portal de laboratório sobre Agentes de IA, a realidade de custos em LLMs, infraestrutura de roteamento multi-provedor (OmniRoute), mitigação de erros de cota (429) e operação do Claude Code no terminal.
+          Roteiro pedagógico completo para a aula de laboratório: entenda as ferramentas, a realidade de custos em IA, prepare seu ambiente, cadastre as chaves no momento certo e execute o Claude Code.
         </p>
       </div>
 
-      <!-- Section: O que são Agentes de IA -->
-      <section id="agentes">
-        <h2><span class="num">1</span> 🤖 O que são Agentes de IA? (Diferença para um chat comum)</h2>
+      <!-- Section 1: As Ferramentas e o que é um Agente -->
+      <section id="ferramentas">
+        <h2><span class="num">1</span> 🤖 As Ferramentas da Aula (O que vamos usar hoje?)</h2>
         <p>
-          Diferente de um assistente de chat comum (onde você precisa ficar copiando e colando código na mão), um <strong>Agente de Desenvolvimento Autônomo</strong> opera diretamente nos arquivos e no terminal do computador:
+          Hoje não vamos usar um chat comum de copiar e colar. Vamos usar um <strong>Agente de Desenvolvimento Autônomo</strong> que opera diretamente na máquina do laboratório:
         </p>
 
         <div class="card-grid">
           <div class="info-box">
-            <h3>📂 Leitura Cirúrgica</h3>
-            <p>Varre arquivos, analisa estruturas de diretórios e extrai o contexto exato do repositório sem alucinações.</p>
+            <h3>🤖 Claude Code</h3>
+            <p>O cérebro da aula. É um assistente que roda na tela preta (terminal), lê seus arquivos de código, cria novos arquivos e testa se tudo está funcionando.</p>
           </div>
           <div class="info-box">
-            <h3>⚡ Edição Direta no Disco</h3>
-            <p>Altera e cria código nos arquivos locais preservando comentários, padrões de formatação e arquitetura existente.</p>
+            <h3>🔀 OmniRoute</h3>
+            <p>O roteador da aula. Um programa local que fica na porta <code>20128</code> recebendo os pedidos do Claude Code e escolhendo qual IA gratuita vai responder.</p>
           </div>
           <div class="info-box">
-            <h3>💻 Execução no Terminal</h3>
-            <p>Roda comandos PowerShell/Bash, suítes de testes, linters e compilações, corrigindo erros automaticamente.</p>
+            <h3>🟢 Provedores de IA</h3>
+            <p>As empresas que fornecem os modelos de linguagem gratuitos oficiais (Google Gemini e Groq Cloud com Llama 3).</p>
           </div>
         </div>
       </section>
 
-      <!-- Section 1: Guia de Sobrevivência -->
-      <section id="sobrevivencia">
-        <h2><span class="num">1</span> 🚨 Guia Rápido de Sobrevivência (Leia antes de mexer no teclado!)</h2>
-        <p>
-          Se você nunca mexeu muito no terminal ou não tem computador em casa, <strong>não se preocupe!</strong> Guarde estas 4 regras de ouro:
-        </p>
-
-        <div class="card-grid">
-          <div class="info-box tip-box">
-            <span class="rule-pill">🖱️ Regra 1: Como colar no terminal</span>
-            <p>Copie o código no botão roxo. Na tela preta (PowerShell), basta dar <strong>um clique com o botão direito do mouse</strong> que o texto cola sozinho.</p>
-          </div>
-
-          <div class="info-box alert-box">
-            <span class="rule-pill">🪟 Regra 2: O segredo das 2 janelas</span>
-            <p>O OmniRoute precisa de <strong>duas janelas pretas abertas</strong>: Janela 1 (motor ligado) e Janela 2 (conversa com a IA). Não faça tudo na mesma janela!</p>
-          </div>
-
-          <div class="info-box danger-box">
-            <span class="rule-pill">👻 Regra 3: A pasta invisível</span>
-            <p>Pastas com ponto na frente (ex: <code>.claude</code>) <strong>ficam invisíveis no Windows</strong>. Se você não vir a pasta no Explorer, ela NÃO sumiu, está oculta.</p>
-          </div>
-
-          <div class="info-box success-box">
-            <span class="rule-pill">🟡 Regra 4: Texto amarelo não é erro</span>
-            <p>Avisos amarelos do <code>npm warn</code> são apenas informações. Você só deve se preocupar se o terminal fechar ou der uma mensagem vermelha.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: Dicionário -->
-      <section id="dicionario">
-        <h2><span class="num">2</span> 📖 Dicionário do Aluno (Em linguagem simples)</h2>
-        <p>Entenda o que são esses termos técnicos usando comparações da vida real:</p>
-
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Nome Técnico</th>
-                <th>O que parece na vida real?</th>
-                <th>O que ele faz no computador?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Agente de IA (Claude Code)</strong></td>
-                <td>Um estagiário de programação muito rápido.</td>
-                <td>Ele lê seus arquivos, cria código e roda testes direto no computador.</td>
-              </tr>
-              <tr>
-                <td><strong>OmniRoute</strong></td>
-                <td>Um roteador Wi-Fi inteligente.</td>
-                <td>Fica na porta <code>20128</code> e escolhe a IA gratuita mais rápida para te responder.</td>
-              </tr>
-              <tr>
-                <td><strong>API</strong></td>
-                <td>O garçom de um restaurante.</td>
-                <td>Leva a sua mensagem até o computador da IA e traz a resposta de volta.</td>
-              </tr>
-              <tr>
-                <td><strong>Tokens</strong></td>
-                <td>Contagem de palavras do SMS.</td>
-                <td>É a quantidade de texto que a IA lê e escreve por segundo.</td>
-              </tr>
-              <tr>
-                <td><strong>Fallback (Transbordo)</strong></td>
-                <td>O plano B da caixa d'água.</td>
-                <td>Se o Gemini bater o limite gratuito, a chamada pula pro Groq sozinho sem travar.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Section 3: A Falácia do Grátis -->
+      <!-- Section 2: A Falácia do Grátis e o Erro 429 -->
       <section id="falacia-gratis">
-        <h2><span class="num">3</span> 💸 A Falácia do "Almoço 100% Grátis" em IA</h2>
+        <h2><span class="num">2</span> 💸 A Falácia do "Almoço 100% Grátis" & Erro 429</h2>
         <p>
-          Muitos tutoriais na internet prometem <em>"Use Claude Code 100% grátis para sempre via OpenRouter"</em>. Na prática, <strong>isso é uma falácia de marketing</strong>.
+          Muitos vídeos na internet prometem <em>"Claude Code ilimitado e 100% grátis para sempre"</em>. Na prática, <strong>isso é uma ilusão técnica</strong>.
         </p>
 
         <div class="card info-box alert-box">
-          <h3>⚠️ Por que o 100% grátis na nuvem trava?</h3>
+          <h3>⚠️ Por que o 100% grátis na nuvem trava? (O Erro 429)</h3>
           <p>
-            Rodar IA de ponta exige computadores gigantescos com placas de vídeo (GPUs H100) que custam fortunas e gastam muita eletricidade. O OpenRouter disponibiliza modelos <code>:free</code> apenas para testes rápidos (20 a 50 requisições por dia). Quando um agente autônomo executa um loop de tarefas, ele faz 40 chamadas em 5 minutos e esgota a cota do dia inteiro, gerando o <strong>Erro 429</strong>.
+            Rodar Inteligência Artificial exige computadores caríssimos com supercomputadores (GPUs H100). Plataformas como o OpenRouter dão modelos <code>:free</code> apenas para pequenos testes. Como o agente faz 40 chamadas em 5 minutos, a cota diária zera e aparece o erro:
+            <br><br>
+            <code style="color:#ef4444; background: rgba(0,0,0,0.5); padding: 0.3rem 0.6rem;">API Error: Request rejected (429) · Rate limit exceeded: free-models-per-day</code>
           </p>
         </div>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Abordagem</th>
-                <th>Custo Médio</th>
-                <th>Estabilidade</th>
-                <th>Veredito</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Modelos <code>:free</code> na Nuvem</strong></td>
-                <td>R$ 0,00</td>
-                <td>Baixa (Erro 429 constante)</td>
-                <td>Frustrante para uso diário em agentes.</td>
-              </tr>
-              <tr>
-                <td><strong>Modelos Locais (Ollama)</strong></td>
-                <td>R$ 0,00 real</td>
-                <td>Alta (Roda na sua RAM)</td>
-                <td>Excelente para privacidade e sem limite de requisições.</td>
-              </tr>
-              <tr>
-                <td><strong>Pay-as-you-go Ultrabarato</strong></td>
-                <td>R$ 5 a R$ 15 / mês</td>
-                <td>Máxima (Sem bloqueios)</td>
-                <td>Melhor custo-benefício (DeepSeek / Gemini Flash).</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Section 4: Erro 429 & Fallback -->
-      <section id="fallback">
-        <h2><span class="num">4</span> 🔄 Anatomia do Erro 429 & Roteamento em Cascata (Fallback)</h2>
+        <h3>A Solução da Aula: Roteamento com Fallback (Transbordo)</h3>
         <p>
-          O código <strong>HTTP 429 (Rate limit exceeded: free-models-per-day)</strong> ocorre quando o limite diário da sua conta do OpenRouter acaba. Esse limite é aplicado à <strong>sua chave inteira</strong> — portanto, alternar entre dois modelos gratuitos na mesma conta não resolve.
+          Para a sua aula não travar no meio do exercício, nós usamos o <strong>OmniRoute</strong> conectando múltiplos provedores independentes. Se a cota de um zerar, ele pula para o outro sozinho:
         </p>
-
-        <h3>O Fluxo de Contingência (Fallback Real)</h3>
-        <p>A solução definitiva é configurar múltiplos provedores independentes no OmniRoute em ordem de prioridade (estratégia <code>fill-first</code>):</p>
 
         <div class="architecture-diagram">
           <div class="flow-step">
             <div class="step-icon" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">1</div>
             <div>
               <strong>Google Gemini (Google AI Studio)</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Cota gratuita oficial e generosa direto da Google.</p>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">1ª Escolha: Cota gratuita oficial e generosa direto da Google.</p>
             </div>
           </div>
-          <div class="flow-arrow">▼ (Se bater limite 429)</div>
+          <div class="flow-arrow">▼ (Se a cota do Gemini bater limite 429)</div>
           <div class="flow-step">
             <div class="step-icon" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">2</div>
             <div>
               <strong>Groq Cloud (Llama 3.3 70B)</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Inferência ultra-rápida em chips LPU dedicados.</p>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">2ª Escolha: Assume imediatamente em chips ultrarrápidos.</p>
             </div>
           </div>
-          <div class="flow-arrow">▼ (Se atingir limite)</div>
+          <div class="flow-arrow">▼ (Se ambos estiverem ocupados)</div>
           <div class="flow-step">
             <div class="step-icon" style="background: rgba(139, 92, 246, 0.2); color: #c084fc;">3</div>
             <div>
-              <strong>DeepSeek / OpenRouter com Saldo Mínimo (Centavos)</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Rede de segurança que conclui a tarefa custando frações de centavos.</p>
+              <strong>DeepSeek / Modelo de Centavos</strong>
+              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Rede de segurança para quem tiver R$ 5 de créditos.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 5: Tutorial Passo a Passo -->
-      <section id="tutorial-passo-a-passo">
-        <h2><span class="num">5</span> 💻 Passo a Passo no Terminal (Pasta Única)</h2>
-        <p>Siga os passos na ordem exata. Cada passo tem o botão de copiar e o que deve aparecer na sua tela.</p>
+      <!-- Section 3: Regras de Sobrevivência no Terminal -->
+      <section id="sobrevivencia">
+        <h2><span class="num">3</span> 🚨 Regras de Sobrevivência (Antes de Mexer no Teclado)</h2>
+        <p>
+          Se você nunca usou o terminal ou não tem computador em casa, guarde estas 4 regras práticas:
+        </p>
+
+        <div class="card-grid">
+          <div class="info-box tip-box">
+            <span class="rule-pill">🖱️ Como colar no terminal</span>
+            <p>Clique no botão roxo de copiar. Na tela preta (PowerShell), basta dar <strong>um clique com o botão direito do mouse</strong> que o texto cola sozinho.</p>
+          </div>
+
+          <div class="info-box alert-box">
+            <span class="rule-pill">🪟 O segredo das 2 janelas</span>
+            <p>O OmniRoute precisa de <strong>duas janelas pretas abertas</strong>: Janela 1 (motor ligado) e Janela 2 (conversa com o Claude). Não tente fazer tudo em uma janela só!</p>
+          </div>
+
+          <div class="info-box danger-box">
+            <span class="rule-pill">👻 A pasta invisível</span>
+            <p>Pastas com ponto na frente (ex: <code>.claude</code>) <strong>ficam invisíveis no Windows</strong>. Se você não vir a pasta no Explorer, ela NÃO sumiu, está oculta.</p>
+          </div>
+
+          <div class="info-box success-box">
+            <span class="rule-pill">🟡 Texto amarelo não é erro</span>
+            <p>Avisos amarelos do <code>npm warn</code> são apenas informações. Você só deve se preocupar se o terminal fechar ou der uma mensagem vermelha.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Mão na Massa - Instalação e Criação de Pastas -->
+      <section id="instalacao-passos">
+        <h2><span class="num">4</span> 💻 Mão na Massa: Instalando Ferramentas e Criando o Projeto</h2>
+        <p>Agora vamos começar a preparar o computador. Siga os passos na ordem exata:</p>
 
         <!-- Passo 0: O Teste do Node.js -->
         <div class="step-container">
           <div class="step-header">
             <span class="step-num-badge" style="background: var(--accent-cyan); color: #000;">PASSO 0 (OBRIGATÓRIO)</span>
-            <h3>Testar se o Node.js e o npm existem no computador</h3>
+            <h3>Testar se o Node.js e o npm existem na máquina</h3>
           </div>
           <p>
-            <strong>Atenção:</strong> O comando <code>npm</code> não existe sozinho no computador; ele vem "de brinde" dentro do <strong>Node.js</strong>. Antes de qualquer coisa, teste se o computador do laboratório já tem o Node instalado:
+            O comando <code>npm</code> não existe sozinho; ele vem dentro do <strong>Node.js</strong>. Abra o PowerShell (tecla Windows + digite <code>powershell</code>) e teste:
           </p>
 
           <div class="code-box">
@@ -286,7 +199,7 @@
           <div class="card-grid" style="margin: 1rem 0;">
             <div class="info-box success-box">
               <strong>✅ Se apareceu um número (ex: <code>v20.x</code> ou <code>v22.x</code>):</strong>
-              <p style="margin:0; font-size: 0.88rem;">O Node.js e o npm já estão instalados! Você pode pular direto para o <strong>Passo 2</strong>.</p>
+              <p style="margin:0; font-size: 0.88rem;">O Node.js e o npm já estão instalados! Pule direto para o <strong>Passo 1</strong>.</p>
             </div>
             <div class="info-box danger-box">
               <strong>❌ Se deu texto vermelho (Comando não reconhecido):</strong>
@@ -296,13 +209,13 @@
 
           <div class="code-box">
             <div class="code-header">
-              <span>PowerShell - Como Instalar o Node.js no Windows</span>
+              <span>PowerShell - Instalação do Node.js</span>
               <button class="copy-btn" data-target="code-install-node">Copiar Instalação</button>
             </div>
             <pre><code id="code-install-node">winget install OpenJS.NodeJS.LTS</code></pre>
           </div>
           <div class="expected-output">
-            <strong>⚠️ Regra de Ouro do Windows:</strong> Se você acabou de instalar o Node.js, <strong>feche a janela do PowerShell e abra uma nova</strong> para que o Windows reconheça o comando <code>npm</code>!
+            <strong>⚠️ Atenção:</strong> Se você acabou de instalar o Node.js, <strong>feche o PowerShell e abra de novo</strong> para ele reconhecer o <code>npm</code>.
           </div>
         </div>
 
@@ -312,7 +225,7 @@
             <span class="step-num-badge">PASSO 1</span>
             <h3>Instalar o Claude Code e o OmniRoute</h3>
           </div>
-          <p>Com o Node.js verificado, instale os dois programas necessários via <code>npm</code>:</p>
+          <p>Instale os dois programas necessários via <code>npm</code>:</p>
 
           <div class="code-box">
             <div class="code-header">
@@ -323,7 +236,7 @@
 npm install -g omniroute</code></pre>
           </div>
           <div class="expected-output">
-            <strong>Resultado esperado:</strong> Várias mensagens e barras de download vão passar na tela e terminar com <code>added N packages</code>.
+            <strong>Resultado esperado:</strong> Vários downloads vão passar na tela e terminar com <code>added N packages</code>.
           </div>
         </div>
 
@@ -331,9 +244,9 @@ npm install -g omniroute</code></pre>
         <div class="step-container">
           <div class="step-header">
             <span class="step-num-badge">PASSO 2</span>
-            <h3>Criar a Pasta do seu Projeto</h3>
+            <h3>Criar a Pasta Isolada do Projeto</h3>
           </div>
-          <p>Copie o comando abaixo e cole no seu terminal para criar e entrar na pasta da aula:</p>
+          <p>Copie e cole para criar a pasta da aula e a subpasta oculta <code>.claude</code>:</p>
 
           <div class="code-box">
             <div class="code-header">
@@ -345,7 +258,7 @@ cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
 mkdir .claude -Force</code></pre>
           </div>
           <div class="expected-output">
-            <strong>Resultado esperado:</strong> O caminho do terminal vai mudar para <code>PS C:\Users\...\Projetos\meu-projeto-ia></code>.
+            <strong>Resultado esperado:</strong> O caminho do terminal vai mudar para <code>PS C:\Users\...\meu-projeto-ia></code>.
           </div>
         </div>
 
@@ -355,7 +268,7 @@ mkdir .claude -Force</code></pre>
             <span class="step-num-badge">PASSO 3</span>
             <h3>Criar o arquivo de Proteção (.gitignore)</h3>
           </div>
-          <p>Esse arquivo protege você de enviar suas senhas para o GitHub sem querer:</p>
+          <p>Gera o arquivo que impede que senhas e dados locais subam para a internet:</p>
 
           <div class="code-box">
             <div class="code-header">
@@ -377,7 +290,7 @@ mkdir .claude -Force</code></pre>
             <span class="step-num-badge">PASSO 4</span>
             <h3>Configurar o Claude Code para usar o OmniRoute</h3>
           </div>
-          <p>Cole este comando para criar a configuração que conecta o Claude Code ao OmniRoute local (porta 20128):</p>
+          <p>Cria a configuração que conecta o Claude Code ao gateway local (porta 20128):</p>
 
           <div class="code-box">
             <div class="code-header">
@@ -401,61 +314,14 @@ mkdir .claude -Force</code></pre>
 }
 '@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8</code></pre>
           </div>
-          <div class="expected-output">
-            <strong>Resultado esperado:</strong> O comando roda em silêncio (sem mensagem de erro).
-          </div>
-        </div>
-
-        <!-- Passo 5 -->
-        <div class="step-container">
-          <div class="step-header">
-            <span class="step-num-badge">PASSO 5</span>
-            <h3>Ligar o Motor do OmniRoute (Janela 1)</h3>
-          </div>
-          <p>Nesta primeira janela do terminal, inicie o servidor do OmniRoute:</p>
-
-          <div class="code-box">
-            <div class="code-header">
-              <span>PowerShell (Janela 1)</span>
-              <button class="copy-btn" data-target="code-p5">Copiar Comando</button>
-            </div>
-            <pre><code id="code-p5">omniroute serve</code></pre>
-          </div>
-          <div class="expected-output">
-            <strong>Atenção:</strong> Esta janela vai ficar travada mostrando logs. <strong>NÃO FECHE ESSA JANELA!</strong> Ela precisa ficar aberta.
-          </div>
-        </div>
-
-        <!-- Passo 6 -->
-        <div class="step-container">
-          <div class="step-header">
-            <span class="step-num-badge">PASSO 6</span>
-            <h3>Abrir a Segunda Janela e Chamar o Claude Code (Janela 2)</h3>
-          </div>
-          <p>
-            1. Abra uma <strong>nova janela</strong> do PowerShell (tecla Windows + <code>powershell</code>).<br>
-            2. Entre na pasta do projeto e rode o <code>claude</code>:
-          </p>
-
-          <div class="code-box">
-            <div class="code-header">
-              <span>PowerShell (Janela 2)</span>
-              <button class="copy-btn" data-target="code-p6">Copiar Comando</button>
-            </div>
-            <pre><code id="code-p6">cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
-claude</code></pre>
-          </div>
-          <div class="expected-output">
-            <strong>Resultado final com sucesso:</strong> O Claude Code abrirá mostrando o rostinho laranja e <code>gratuitos with high effort</code> pronto para você conversar!
-          </div>
         </div>
       </section>
 
-      <!-- Section 6: Mapa das Chaves Gratuitas -->
-      <section id="chaves">
-        <h2><span class="num">6</span> 🔑 Onde Pegar as Chaves de API (Depois de Montar a Estrutura)</h2>
+      <!-- Section 5: Chegou a hora das Chaves! -->
+      <section id="chaves-api">
+        <h2><span class="num">5</span> 🔑 Chegou a Hora: Pegar as Chaves Gratuitas de API</h2>
         <p>
-          Agora que a estrutura do seu projeto já está criada, conecte as <strong>Chaves Gratuitas</strong> no OmniRoute para que a IA tenha múltiplos provedores de contingência:
+          Agora que a estrutura do seu projeto já está pronta, <strong>vamos pegar as chaves nos sites oficiais e cadastrar no OmniRoute</strong>. Clique nos botões abaixo:
         </p>
 
         <div class="card-grid">
@@ -520,13 +386,13 @@ claude</code></pre>
               <div class="portal-header">
                 <div class="portal-icon" style="background: rgba(139, 92, 246, 0.2); color: var(--accent-primary);">⚙️</div>
                 <div>
-                  <h3 style="margin:0;">3. Painel OmniRoute</h3>
-                  <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">No seu próprio PC</span>
+                  <h3 style="margin:0;">3. Cadastrar no OmniRoute</h3>
+                  <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">Painel de Controle</span>
                 </div>
               </div>
 
               <div class="steps-list">
-                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Como colar as chaves:</p>
+                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Como salvar as chaves:</p>
                 <ol>
                   <li>Abra o painel com <code>omniroute dashboard</code>.</li>
                   <li>Vá na aba <strong>"Providers"</strong>.</li>
@@ -543,50 +409,66 @@ claude</code></pre>
         </div>
       </section>
 
-      <!-- Section 7: Claude Code Boas Práticas & MCPs -->
-      <section id="claude-boas-praticas">
-        <h2><span class="num">7</span> ⚡ Claude Code: Comandos e Boas Práticas</h2>
-        <p>
-          Ao utilizar o Claude Code conectado via OmniRoute, algumas práticas evitam lentidão e consumo desnecessário de contexto:
-        </p>
+      <!-- Section 6: Ligar o Motor e Executar -->
+      <section id="execucao-final">
+        <h2><span class="num">6</span> 🚀 Ligar o Motor e Rodar o Claude Code</h2>
+        <p>Com as chaves cadastradas, vamos colocar tudo para rodar em 2 passos simples:</p>
 
-        <div class="card-grid">
-          <div class="info-box success-box">
-            <h3>* Transfiguring... (Processando)</h3>
-            <p>É a animação normal do Claude Code indicando que ele está processando a resposta da LLM e avaliando as ferramentas do projeto.</p>
+        <!-- Passo 5 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 5</span>
+            <h3>Ligar o Motor do OmniRoute (Janela 1)</h3>
           </div>
-          <div class="info-box alert-box">
-            <h3>Cuidado com MCPs em Excesso</h3>
-            <p>Servidores MCP sem autenticação ou em excesso podem enviar até <strong>150.000 tokens</strong> em uma saudação simples, atrasando a resposta.</p>
+          <p>Nesta primeira janela do terminal, inicie o servidor:</p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell (Janela 1)</span>
+              <button class="copy-btn" data-target="code-p5">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p5">omniroute serve</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>⚠️ Atenção:</strong> Esta janela vai ficar travada mostrando logs. <strong>NÃO FECHE ESSA JANELA!</strong> Ela precisa ficar aberta.
           </div>
         </div>
 
-        <div class="code-box">
-          <div class="code-header">
-            <span>Comandos no Terminal do Claude Code</span>
-            <button class="copy-btn" data-target="code-claude">Copiar Comandos</button>
+        <!-- Passo 6 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 6</span>
+            <h3>Abrir a Segunda Janela e Rodar o Claude Code (Janela 2)</h3>
           </div>
-          <pre><code id="code-claude">/       # Abre o menu interativo com todas as opções
-/model  # Exibe o modelo ou combo ativo (ex: gratuitos)
-/mcp    # Gerencia e desativa servidores MCP pesados
-/clear  # Limpa o histórico da sessão e acelera as respostas
-/cost   # Mostra o consumo de tokens e estatísticas</code></pre>
+          <p>
+            1. Abra uma <strong>nova janela</strong> do PowerShell (tecla Windows + <code>powershell</code>).<br>
+            2. Entre na pasta do projeto e chame o <code>claude</code>:
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell (Janela 2)</span>
+              <button class="copy-btn" data-target="code-p6">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p6">cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+claude</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Resultado final com sucesso:</strong> O Claude Code abrirá mostrando o rostinho laranja e <code>gratuitos with high effort</code> pronto para você conversar!
+          </div>
         </div>
       </section>
 
-      <!-- Section 8: Visual Terminal Mockup -->
-      <section id="visual-terminal">
-        <h2><span class="num">8</span> 👁️ Como Deve Ficar a sua Tela (Visão Real)</h2>
-        <p>
-          Veja exatamente como deve ficar o seu terminal quando você conseguir rodar o Claude Code com sucesso:
-        </p>
+      <!-- Section 7: Telas Reais e Boas Práticas -->
+      <section id="telas-dicas">
+        <h2><span class="num">7</span> 👁️ Telas Reais & Comandos Úteis</h2>
 
         <div class="mock-terminal">
           <div class="mock-terminal-header">
             <div class="mock-dot dot-red"></div>
             <div class="mock-dot dot-yellow"></div>
             <div class="mock-dot dot-green"></div>
-            <span class="mock-terminal-title">Windows PowerShell — Janela 2 (Claude Code Ativo)</span>
+            <span class="mock-terminal-title">Windows PowerShell — Janela 2 (Claude Code Funcionando)</span>
           </div>
           <div class="mock-terminal-body">
             <span style="color: #f97316; font-weight: bold;">
@@ -604,11 +486,22 @@ claude</code></pre>
             <span style="color: #eab308; font-size: 0.8rem;">⏩ auto mode on (shift+tab to cycle) · esc to interrupt · / for commands</span>
           </div>
         </div>
+
+        <div class="card-grid">
+          <div class="info-box success-box">
+            <h3>* Transfiguring... (Processando)</h3>
+            <p>É a animação normal do Claude Code indicando que ele está processando a resposta e organizando as ferramentas.</p>
+          </div>
+          <div class="info-box alert-box">
+            <h3>Comando /clear (Ficar mais rápido)</h3>
+            <p>Se a conversa começar a demorar, digite <code>/clear</code> no terminal para limpar o histórico e acelerar as respostas.</p>
+          </div>
+        </div>
       </section>
 
-      <!-- Section 9: Links -->
+      <!-- Section 8: Links da Turma -->
       <section id="links-alunos">
-        <h2><span class="num">9</span> 🔗 Links Oficiais para a Turma</h2>
+        <h2><span class="num">8</span> 🔗 Links Oficiais para a Turma</h2>
 
         <div class="card-grid">
           <div class="info-box success-box">
