@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia Prático Visual: Agentes de IA, OmniRoute e Claude Code | IFCE</title>
-  <meta name="description" content="Tutorial passo a passo, 100% visual e à prova de erros para alunos sobre como pegar chaves gratuitas, configurar o OmniRoute e rodar o Claude Code no laboratório.">
+  <title>Agentes de IA & OmniRoute no Laboratório | IFCE</title>
+  <meta name="description" content="Guia prático e portal de laboratório sobre Agentes de IA, infraestrutura de roteamento multi-provedor (OmniRoute), mitigação de erros de cota (429) e operação do Claude Code no terminal.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,12 +23,13 @@
     <div class="header-inner">
       <a href="#" class="logo">
         <span class="logo-badge">IFCE CAUCAIA</span>
-        <span>Guia Visual de IA & OmniRoute</span>
+        <span>Laboratório de IA & OmniRoute</span>
       </a>
       <div class="header-links">
-        <a href="#chaves">🔑 Onde Pegar Chaves</a>
         <a href="#sobrevivencia">🚨 Sobrevivência</a>
+        <a href="#dicionario">📖 Dicionário</a>
         <a href="#tutorial-passo-a-passo">💻 Passo a Passo</a>
+        <a href="#chaves">🔑 Chaves de API</a>
         <a href="#visual-terminal">👁️ Telas Reais</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -44,12 +45,12 @@
     <!-- Sidebar -->
     <aside>
       <div class="sidebar-box">
-        <div class="sidebar-title">Navegação Rápida</div>
+        <div class="sidebar-title">Guia da Aula</div>
         <ul class="nav-links">
-          <li><a href="#chaves" class="active">1. 🔑 Onde Pegar Chaves</a></li>
-          <li><a href="#sobrevivencia">2. 🚨 Regras de Sobrevivência</a></li>
-          <li><a href="#dicionario">3. 📖 O que significa cada termo?</a></li>
-          <li><a href="#tutorial-passo-a-passo">4. 💻 Passo a Passo no Terminal</a></li>
+          <li><a href="#sobrevivencia" class="active">1. 🚨 Regras de Sobrevivência</a></li>
+          <li><a href="#dicionario">2. 📖 Dicionário do Aluno</a></li>
+          <li><a href="#tutorial-passo-a-passo">3. 💻 Passo a Passo no Terminal</a></li>
+          <li><a href="#chaves">4. 🔑 Onde Pegar Chaves de API</a></li>
           <li><a href="#visual-terminal">5. 👁️ Telas e Janelas Reais</a></li>
           <li><a href="#links-alunos">6. 🔗 Links e Materiais</a></li>
         </ul>
@@ -68,128 +69,40 @@
         </p>
       </div>
 
-      <!-- Section 1: Mapa das Chaves Gratuitas -->
-      <section id="chaves">
-        <h2><span class="num">1</span> 🔑 Onde Entrar e Onde Clicar para Pegar as Chaves (Grátis)</h2>
+      <!-- Section 1: Guia de Sobrevivência -->
+      <section id="sobrevivencia">
+        <h2><span class="num">1</span> 🚨 Guia Rápido de Sobrevivência (Leia antes de mexer no teclado!)</h2>
         <p>
-          Para que a IA responda, precisamos de uma <strong>Chave de API</strong> (que é como a sua senha gratuita de acesso). Clique nos botões abaixo para abrir direto os sites oficiais:
+          Se você nunca mexeu muito no terminal ou não tem computador em casa, <strong>não se preocupe!</strong> Guarde estas 4 regras de ouro:
         </p>
 
         <div class="card-grid">
-          
-          <!-- Card Gemini -->
-          <div class="portal-card" style="border-top: 3px solid var(--accent-google);">
-            <div>
-              <div class="portal-header">
-                <div class="portal-icon" style="background: rgba(66, 133, 244, 0.2); color: var(--accent-google);">G</div>
-                <div>
-                  <h3 style="margin:0;">1. Google Gemini API</h3>
-                  <span style="font-size:0.8rem; color:var(--accent-emerald); font-weight:700;">100% Gratuito Oficial</span>
-                </div>
-              </div>
-
-              <div class="steps-list">
-                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Onde clicar no site:</p>
-                <ol>
-                  <li>Faça login com seu Gmail normal.</li>
-                  <li>Clique no botão azul <strong>"Get API key"</strong>.</li>
-                  <li>Clique em <strong>"Create API key"</strong>.</li>
-                  <li>Copie o código (começa com <code>AIzaSy...</code>).</li>
-                </ol>
-              </div>
-            </div>
-
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);">
-              Abrir Google AI Studio ↗
-            </a>
-          </div>
-
-          <!-- Card Groq -->
-          <div class="portal-card" style="border-top: 3px solid var(--accent-groq);">
-            <div>
-              <div class="portal-header">
-                <div class="portal-icon" style="background: rgba(249, 115, 22, 0.2); color: var(--accent-groq);">⚡</div>
-                <div>
-                  <h3 style="margin:0;">2. Groq Cloud (Llama 3)</h3>
-                  <span style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">Ultra-Rápido & Grátis</span>
-                </div>
-              </div>
-
-              <div class="steps-list">
-                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Onde clicar no site:</p>
-                <ol>
-                  <li>Entre com o Google ou GitHub.</li>
-                  <li>No menu da esquerda, clique em <strong>"API Keys"</strong>.</li>
-                  <li>Clique no botão <strong>"Create API Key"</strong>.</li>
-                  <li>Copie o código (começa com <code>gsk_...</code>).</li>
-                </ol>
-              </div>
-            </div>
-
-            <a href="https://console.groq.com/keys" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
-              Abrir Groq Cloud ↗
-            </a>
-          </div>
-
-          <!-- Card OmniRoute Dashboard -->
-          <div class="portal-card" style="border-top: 3px solid var(--accent-primary);">
-            <div>
-              <div class="portal-header">
-                <div class="portal-icon" style="background: rgba(139, 92, 246, 0.2); color: var(--accent-primary);">⚙️</div>
-                <div>
-                  <h3 style="margin:0;">3. Painel OmniRoute</h3>
-                  <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">No seu próprio PC</span>
-                </div>
-              </div>
-
-              <div class="steps-list">
-                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Como colar as chaves:</p>
-                <ol>
-                  <li>Abra o painel com <code>omniroute dashboard</code>.</li>
-                  <li>Vá na aba <strong>"Providers"</strong>.</li>
-                  <li>Cole a chave do Gemini ou Groq e clique em <strong>Save</strong>.</li>
-                </ol>
-              </div>
-            </div>
-
-            <a href="http://localhost:20128" target="_blank" class="btn-open-site">
-              Abrir Painel Local (Porta 20128) ↗
-            </a>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Section 2: Guia de Sobrevivência -->
-      <section id="sobrevivencia">
-        <h2><span class="num">2</span> 🚨 Regras de Sobrevivência (Leia antes de mexer no teclado!)</h2>
-
-        <div class="card-grid">
           <div class="info-box tip-box">
-            <span class="rule-pill">🖱️ Como colar no terminal</span>
+            <span class="rule-pill">🖱️ Regra 1: Como colar no terminal</span>
             <p>Copie o código no botão roxo. Na tela preta (PowerShell), basta dar <strong>um clique com o botão direito do mouse</strong> que o texto cola sozinho.</p>
           </div>
 
           <div class="info-box alert-box">
-            <span class="rule-pill">🪟 O segredo das 2 janelas</span>
+            <span class="rule-pill">🪟 Regra 2: O segredo das 2 janelas</span>
             <p>O OmniRoute precisa de <strong>duas janelas pretas abertas</strong>: Janela 1 (motor ligado) e Janela 2 (conversa com a IA). Não faça tudo na mesma janela!</p>
           </div>
 
           <div class="info-box danger-box">
-            <span class="rule-pill">👻 A pasta invisível</span>
+            <span class="rule-pill">👻 Regra 3: A pasta invisível</span>
             <p>Pastas com ponto na frente (ex: <code>.claude</code>) <strong>ficam invisíveis no Windows</strong>. Se você não vir a pasta no Explorer, ela NÃO sumiu, está oculta.</p>
           </div>
 
           <div class="info-box success-box">
-            <span class="rule-pill">🟡 Texto amarelo não é erro</span>
+            <span class="rule-pill">🟡 Regra 4: Texto amarelo não é erro</span>
             <p>Avisos amarelos do <code>npm warn</code> são apenas informações. Você só deve se preocupar se o terminal fechar ou der uma mensagem vermelha.</p>
           </div>
         </div>
       </section>
 
-      <!-- Section 3: Dicionário -->
+      <!-- Section 2: Dicionário -->
       <section id="dicionario">
-        <h2><span class="num">3</span> 📖 Dicionário do Aluno (Em linguagem simples)</h2>
+        <h2><span class="num">2</span> 📖 Dicionário do Aluno (Em linguagem simples)</h2>
+        <p>Entenda o que são esses termos técnicos usando comparações da vida real:</p>
 
         <div class="table-wrapper">
           <table>
@@ -231,9 +144,9 @@
         </div>
       </section>
 
-      <!-- Section 4: Tutorial Passo a Passo -->
+      <!-- Section 3: Tutorial Passo a Passo -->
       <section id="tutorial-passo-a-passo">
-        <h2><span class="num">4</span> 💻 Passo a Passo no Terminal (Pasta Única)</h2>
+        <h2><span class="num">3</span> 💻 Passo a Passo no Terminal (Pasta Única)</h2>
         <p>Siga os passos na ordem exata. Cada passo tem o botão de copiar e o que deve aparecer na sua tela.</p>
 
         <!-- Passo 0: O Teste do Node.js -->
@@ -243,7 +156,7 @@
             <h3>Testar se o Node.js e o npm existem no computador</h3>
           </div>
           <p>
-            <strong>Atenção:</strong> O comando <code>npm</code> não existe sozinho no computador; ele vem "de brinde" dentro do <strong>Node.js</strong>. Antes de qualquer coisa, teste se o computador já tem o Node instalado:
+            <strong>Atenção:</strong> O comando <code>npm</code> não existe sozinho no computador; ele vem "de brinde" dentro do <strong>Node.js</strong>. Antes de qualquer coisa, teste se o computador do laboratório já tem o Node instalado:
           </p>
 
           <div class="code-box">
@@ -419,6 +332,98 @@ claude</code></pre>
           <div class="expected-output">
             <strong>Resultado final com sucesso:</strong> O Claude Code abrirá mostrando o rostinho laranja e <code>gratuitos with high effort</code> pronto para você conversar!
           </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Mapa das Chaves Gratuitas (Colocado agora no momento certo!) -->
+      <section id="chaves">
+        <h2><span class="num">4</span> 🔑 Onde Pegar as Chaves de API (Depois de Montar a Estrutura)</h2>
+        <p>
+          Agora que a estrutura do seu projeto já está criada, você pode conectar as <strong>Chaves Gratuitas</strong> no OmniRoute para que a IA tenha acesso a múltiplos provedores. Clique nos botões abaixo para abrir os sites oficiais:
+        </p>
+
+        <div class="card-grid">
+          
+          <!-- Card Gemini -->
+          <div class="portal-card" style="border-top: 3px solid var(--accent-google);">
+            <div>
+              <div class="portal-header">
+                <div class="portal-icon" style="background: rgba(66, 133, 244, 0.2); color: var(--accent-google);">G</div>
+                <div>
+                  <h3 style="margin:0;">1. Google Gemini API</h3>
+                  <span style="font-size:0.8rem; color:var(--accent-emerald); font-weight:700;">100% Gratuito Oficial</span>
+                </div>
+              </div>
+
+              <div class="steps-list">
+                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Onde clicar no site:</p>
+                <ol>
+                  <li>Faça login com seu Gmail normal.</li>
+                  <li>Clique no botão azul <strong>"Get API key"</strong>.</li>
+                  <li>Clique em <strong>"Create API key"</strong>.</li>
+                  <li>Copie o código (começa com <code>AIzaSy...</code>).</li>
+                </ol>
+              </div>
+            </div>
+
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);">
+              Abrir Google AI Studio ↗
+            </a>
+          </div>
+
+          <!-- Card Groq -->
+          <div class="portal-card" style="border-top: 3px solid var(--accent-groq);">
+            <div>
+              <div class="portal-header">
+                <div class="portal-icon" style="background: rgba(249, 115, 22, 0.2); color: var(--accent-groq);">⚡</div>
+                <div>
+                  <h3 style="margin:0;">2. Groq Cloud (Llama 3)</h3>
+                  <span style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">Ultra-Rápido & Grátis</span>
+                </div>
+              </div>
+
+              <div class="steps-list">
+                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Onde clicar no site:</p>
+                <ol>
+                  <li>Entre com o Google ou GitHub.</li>
+                  <li>No menu da esquerda, clique em <strong>"API Keys"</strong>.</li>
+                  <li>Clique no botão <strong>"Create API Key"</strong>.</li>
+                  <li>Copie o código (começa com <code>gsk_...</code>).</li>
+                </ol>
+              </div>
+            </div>
+
+            <a href="https://console.groq.com/keys" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+              Abrir Groq Cloud ↗
+            </a>
+          </div>
+
+          <!-- Card OmniRoute Dashboard -->
+          <div class="portal-card" style="border-top: 3px solid var(--accent-primary);">
+            <div>
+              <div class="portal-header">
+                <div class="portal-icon" style="background: rgba(139, 92, 246, 0.2); color: var(--accent-primary);">⚙️</div>
+                <div>
+                  <h3 style="margin:0;">3. Painel OmniRoute</h3>
+                  <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">No seu próprio PC</span>
+                </div>
+              </div>
+
+              <div class="steps-list">
+                <p style="margin:0 0 0.35rem; font-weight:700; color:#fff;">Como colar as chaves:</p>
+                <ol>
+                  <li>Abra o painel com <code>omniroute dashboard</code>.</li>
+                  <li>Vá na aba <strong>"Providers"</strong>.</li>
+                  <li>Cole a chave do Gemini ou Groq e clique em <strong>Save</strong>.</li>
+                </ol>
+              </div>
+            </div>
+
+            <a href="http://localhost:20128" target="_blank" class="btn-open-site">
+              Abrir Painel Local (Porta 20128) ↗
+            </a>
+          </div>
+
         </div>
       </section>
 
