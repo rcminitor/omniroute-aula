@@ -1,4 +1,4 @@
-# 📘 Guia Prático: Agentes de IA, OmniRoute e Claude Code
+# 📘 AGENT-LAB: Guia Completo de Agentes de IA, OmniRoute e Claude Code
 
 > **Instituto Federal do Ceará (IFCE) — Campus Caucaia**  
 > **Disciplina de Inteligência Artificial — Prof. Romulo Cesar** (`romulo.cesar@ifce.edu.br`)  
@@ -32,9 +32,40 @@ Se você nunca usou o terminal ou não tem computador em casa, **não se preocup
 
 ---
 
-## 💻 3. Passo a Passo no Terminal (Pasta Única)
+## 💸 3. A Falácia do "Almoço 100% Grátis" em IA
 
-Siga os passos na ordem exata.
+Muitos tutoriais prometem *"Use Claude Code 100% grátis para sempre via OpenRouter"*. Na prática, isso esbarra em limites técnicos:
+
+1. **Inferência é cara:** Rodar modelos de ponta exige clusters de GPUs (H100) com alto consumo elétrico e de hardware.
+2. **Modelos `:free` são para degustação:** O OpenRouter limita contas gratuitas a poucas dezenas de requisições por dia.
+3. **Agentes consomem muito:** Uma única tarefa de agente pode fazer 30 a 50 chamadas de API em loop, esgotando cotas gratuitas em minutos.
+
+### As Três Abordagens Reais:
+| Abordagem | Custo Médio | Estabilidade | Veredito |
+| :--- | :--- | :--- | :--- |
+| **Modelos `:free` na Nuvem** | R$ 0,00 | Baixa (Erro 429 constante) | Frustrante para uso diário em agentes. |
+| **Modelos Locais (Ollama)** | R$ 0,00 real | Alta (Roda na sua RAM) | Excelente para privacidade e sem limite de requisições. |
+| **Pay-as-you-go Ultrabarato** | R$ 5 a R$ 15 / mês | Máxima (Sem bloqueios) | Melhor custo-benefício (DeepSeek / Gemini Flash). |
+
+---
+
+## 🔄 4. Anatomia do Erro 429 & Roteamento em Cascata (Fallback)
+
+### O que significa?
+> `API Error: Request rejected (429) · Rate limit exceeded: free-models-per-day`
+
+* **Código 429:** *Too Many Requests* (Limite de requisições atingido).
+* **Bloqueio por Conta:** No OpenRouter, o limite de modelos gratuitos é aplicado à **sua chave inteira**. Se um modelo gratuito travar, todos os outros modelos gratuitos daquela chave travam juntos.
+
+### A Solução: Fallback Multi-Provedor
+Para o sistema pular automaticamente para outra IA quando uma atingir o limite, os modelos devem vir de **provedores independentes**:
+1. 🟢 **Google Gemini** (Google AI Studio - grátis e cota generosa).
+2. 🟢 **Groq Cloud** (Llama 3.3 70B - ultra-rápido).
+3. 🟢 **DeepSeek / OpenRouter com centavos** (Rede de segurança para nunca travar).
+
+---
+
+## 💻 5. Passo a Passo no Terminal (Pasta Única)
 
 ### 🔹 Passo 0: Testar se o Node.js e o npm existem no computador
 O comando `npm` não existe sozinho no Windows; ele vem **dentro do pacote do Node.js**. Teste se o computador já tem o Node instalado:
@@ -128,9 +159,7 @@ claude
 
 ---
 
-## 🔑 4. Onde Pegar as Chaves de API Gratuitas
-
-Agora que a estrutura do seu projeto está montada, você pode pegar as chaves gratuitas para conectar no OmniRoute:
+## 🔑 6. Onde Pegar as Chaves de API Gratuitas
 
 ### 🟢 Opção 1: Google Gemini API (100% Gratuito Oficial)
 * 🔗 **Link direto:** [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
@@ -162,14 +191,18 @@ Agora que a estrutura do seu projeto está montada, você pode pegar as chaves g
 
 ---
 
-## ⚠️ 5. Resolução de Dúvidas e Erros Comuns
+## ⚡ 7. Claude Code: Comandos e Boas Práticas
 
-* **Por que apareceu `Erro 429 - Rate limit exceeded`?**
-  * Você usou todas as requisições gratuitas da sua chave do OpenRouter. A solução é abrir o painel `omniroute dashboard` e adicionar o **Google Gemini** ou o **Groq** para ter provedores extras de reserva.
-* **O que significa `* Transfiguring...`?**
-  * É a animação normal do Claude Code mostrando que ele está pensando e organizando ferramentas.
-* **Como ver as opções do Claude Code?**
-  * Digite apenas uma barra `/` no terminal para abrir o menu com `/model`, `/mcp`, `/cost` e `/clear`.
+* **O que é o `* Transfiguring...`?**
+  * É a animação normal do Claude Code indicando que ele está processando a resposta da LLM e avaliando as ferramentas do projeto.
+* **Cuidado com MCPs em Excesso:**
+  * Servidores MCP sem autenticação ou em excesso podem enviar até **150.000 tokens** em uma saudação simples, atrasando a resposta.
+* **Comandos no Terminal do Claude Code:**
+  * `/` → Abre o menu interativo com todas as opções.
+  * `/model` → Exibe o modelo ou combo ativo (ex: gratuitos).
+  * `/mcp` → Gerencia e desativa servidores MCP pesados.
+  * `/clear` → Limpa o histórico da sessão e acelera as respostas.
+  * `/cost` → Mostra o consumo de tokens e estatísticas.
 
 ---
-*Material didático desenvolvido para os estudantes do IFCE Campus Caucaia.*
+*Material didático desenvolvido para o AGENT-LAB — IFCE Campus Caucaia.*
