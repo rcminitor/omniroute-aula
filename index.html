@@ -147,13 +147,66 @@
         <h2><span class="num">3</span> 💻 Passo a Passo no Terminal (Pasta Única)</h2>
         <p>Siga os passos na ordem exata. Cada passo tem o botão de copiar e o que deve aparecer na sua tela.</p>
 
+        <!-- Passo 0: O Teste do Node.js -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge" style="background: var(--accent-cyan); color: #000;">PASSO 0 (OBRIGATÓRIO)</span>
+            <h3>Testar se o Node.js e o npm existem no computador</h3>
+          </div>
+          <p>
+            <strong>Atenção:</strong> O comando <code>npm</code> não existe sozinho no computador; ele vem "de brinde" dentro do <strong>Node.js</strong>. Antes de qualquer coisa, teste se o computador do laboratório já tem o Node instalado:
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell - Teste de Verificação</span>
+              <button class="copy-btn" data-target="code-p0">Copiar Teste</button>
+            </div>
+            <pre><code id="code-p0">node -v</code></pre>
+          </div>
+
+          <div class="card-grid" style="margin: 1rem 0;">
+            <div class="info-box success-box">
+              <strong>✅ Se apareceu um número (ex: <code>v20.x</code> ou <code>v22.x</code>):</strong>
+              <p style="margin:0; font-size: 0.88rem;">O Node.js e o npm já estão instalados! Você pode pular direto para o <strong>Passo 2</strong>.</p>
+            </div>
+            <div class="info-box danger-box">
+              <strong>❌ Se deu texto vermelho (Comando não reconhecido):</strong>
+              <p style="margin:0; font-size: 0.88rem;">O computador não tem Node.js. Instale com o comando abaixo:</p>
+            </div>
+          </div>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell - Como Instalar o Node.js no Windows</span>
+              <button class="copy-btn" data-target="code-install-node">Copiar Instalação</button>
+            </div>
+            <pre><code id="code-install-node">winget install OpenJS.NodeJS.LTS</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>⚠️ Regra de Ouro do Windows:</strong> Se você acabou de instalar o Node.js, <strong>feche a janela do PowerShell e abra uma nova</strong> para que o Windows reconheça o comando <code>npm</code>!
+          </div>
+        </div>
+
         <!-- Passo 1 -->
         <div class="step-container">
           <div class="step-header">
             <span class="step-num-badge">PASSO 1</span>
-            <h3>Abrir o PowerShell</h3>
+            <h3>Instalar o Claude Code e o OmniRoute</h3>
           </div>
-          <p>Pressione a tecla <strong>Windows</strong> no teclado, digite <code>powershell</code> e aperte <strong>Enter</strong>.</p>
+          <p>Com o Node.js verificado, instale os dois programas necessários via <code>npm</code>:</p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell</span>
+              <button class="copy-btn" data-target="code-p1">Copiar Instalação</button>
+            </div>
+            <pre><code id="code-p1">npm install -g @anthropic-ai/claude-code
+npm install -g omniroute</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Resultado esperado:</strong> Várias mensagens e barras de download vão passar na tela e terminar com <code>added N packages</code>.
+          </div>
         </div>
 
         <!-- Passo 2 -->

@@ -37,9 +37,28 @@ Se você nunca usou o terminal ou não tem computador em casa, **não se preocup
 
 Siga os passos na ordem. Cada passo deve ser executado com atenção.
 
-### 🔹 Passo 1: Abrir o PowerShell
-1. Pressione a tecla **Windows** no teclado.
-2. Digite `powershell` e aperte **Enter**.
+### 🔹 Passo 0: Testar se o Node.js e o npm existem no computador
+O comando `npm` não existe sozinho no Windows; ele vem **dentro do pacote do Node.js**. Antes de tudo, teste se o computador já tem o Node instalado:
+
+```powershell
+node -v
+```
+
+* **✅ Se apareceu um número (ex: `v20.x` ou `v22.x`):** O Node.js e o npm já estão instalados! Pule direto para o **Passo 2**.
+* **❌ Se deu erro vermelho de comando não reconhecido:** O computador não tem Node.js. Instale com o comando:
+  ```powershell
+  winget install OpenJS.NodeJS.LTS
+  ```
+  *(Depois de instalar, **feche o PowerShell e abra de novo** para ele reconhecer o `npm`).*
+
+---
+
+### 🔹 Passo 1: Instalar o Claude Code e o OmniRoute
+Com o Node.js pronto, instale os dois pacotes globais:
+```powershell
+npm install -g @anthropic-ai/claude-code
+npm install -g omniroute
+```
 
 ---
 
