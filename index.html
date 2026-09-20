@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia de Agentes de IA, OmniRoute e Gestão de LLMs</title>
-  <meta name="description" content="Tutorial completo sobre arquitetura de agentes de IA locais, mitigação do erro 429, roteamento multi-provedor com OmniRoute e Claude Code.">
+  <title>Guia Prático: Agentes de IA, OmniRoute e Claude Code | IFCE</title>
+  <meta name="description" content="Tutorial passo a passo e à prova de erros para alunos sobre como usar Agentes de IA, OmniRoute e Claude Code no laboratório.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,15 +22,14 @@
   <header>
     <div class="header-inner">
       <a href="#" class="logo">
-        <span class="logo-badge">AGENT-LAB</span>
-        <span>OmniRoute & IA Guide</span>
+        <span class="logo-badge">IFCE CAUCAIA</span>
+        <span>Laboratório de IA & OmniRoute</span>
       </a>
       <div class="header-links">
-        <a href="#agentes">Agentes</a>
-        <a href="#custos">Custos & Limites</a>
-        <a href="#fallback">Fallback (429)</a>
-        <a href="#omniroute">OmniRoute</a>
-        <a href="#claude-code">Claude Code</a>
+        <a href="#sobrevivencia">🚨 Sobrevivência</a>
+        <a href="#dicionario">📖 Dicionário</a>
+        <a href="#tutorial-passo-a-passo">💻 Passo a Passo</a>
+        <a href="#erros-comuns">⚠️ Dúvidas</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           github.com/rcminitor
@@ -45,15 +44,13 @@
     <!-- Sidebar -->
     <aside>
       <div class="sidebar-box">
-        <div class="sidebar-title">Sumário do Guia</div>
+        <div class="sidebar-title">Guia da Aula</div>
         <ul class="nav-links">
-          <li><a href="#agentes" class="active">1. Agentes de IA Locais</a></li>
-          <li><a href="#custos">2. A Falácia do Grátis</a></li>
-          <li><a href="#tutorial-pratico">3. Tutorial Pasta Única</a></li>
-          <li><a href="#fallback">4. Erro 429 & Fallback</a></li>
-          <li><a href="#omniroute">5. Setup OmniRoute</a></li>
-          <li><a href="#claude-code">6. Claude Code Prático</a></li>
-          <li><a href="#github-deploy">7. Links para Alunos</a></li>
+          <li><a href="#sobrevivencia" class="active">1. Regras de Sobrevivência</a></li>
+          <li><a href="#dicionario">2. O que significa cada termo?</a></li>
+          <li><a href="#tutorial-passo-a-passo">3. Passo a Passo no Terminal</a></li>
+          <li><a href="#erros-comuns">4. O que fazer se der erro?</a></li>
+          <li><a href="#links-alunos">5. Links e Materiais</a></li>
         </ul>
       </div>
     </aside>
@@ -63,130 +60,160 @@
       
       <!-- Hero -->
       <div class="hero">
-        <span class="badge-tag">Guia Técnico & Prático</span>
-        <h1>Agentes de IA, OmniRoute e Gestão de LLMs</h1>
+        <span class="badge-tag">Disciplina de Inteligência Artificial · IFCE Caucaia</span>
+        <h1>Como Criar e Rodar Agentes de IA no Terminal</h1>
         <p class="hero-subtitle">
-          Entenda como funcionam os agentes autônomos locais, como eliminar erros de cota (429) com roteamento em cascata e como usar múltiplos provedores com eficiência máxima.
+          Prof. Romulo Cesar (<code>romulo.cesar@ifce.edu.br</code>). Um roteiro simples, direto e à prova de dúvidas para você criar seu projeto de IA do zero no computador do laboratório.
         </p>
       </div>
 
-      <!-- Section 1 -->
-      <section id="agentes">
-        <h2><span class="num">1</span> O que são Agentes de IA?</h2>
+      <!-- Section 1: Guia de Sobrevivência -->
+      <section id="sobrevivencia">
+        <h2><span class="num">1</span> 🚨 Guia Rápido de Sobrevivência (Leia antes de começar!)</h2>
         <p>
-          Diferente de assistentes de chat comuns em que você precisa copiar e colar código, um <strong>Agente de Desenvolvimento Autônomo</strong> tem acesso direto ao sistema de arquivos e ao terminal da sua máquina para realizar tarefas de ponta a ponta.
+          Se você nunca mexeu muito no terminal ou não tem computador em casa, <strong>não se preocupe!</strong> Guarde estas 5 regras de ouro:
         </p>
 
         <div class="card-grid">
-          <div class="info-box">
-            <h3>📂 Leitura Cirúrgica</h3>
-            <p>Varre arquivos, analisa estruturas de diretórios e extrai o contexto exato do repositório sem alucinações.</p>
+          <div class="info-box tip-box">
+            <span class="rule-pill">🖱️ Regra 1: Como colar código</span>
+            <p>Copie o código no botão roxo. Na tela preta (terminal), basta dar <strong>um clique com o botão direito do mouse</strong> que o texto cola sozinho.</p>
           </div>
-          <div class="info-box">
-            <h3>⚡ Edição Direta no Disco</h3>
-            <p>Altera e cria código nos arquivos locais preservando comentários, padrões de formatação e arquitetura existente.</p>
+
+          <div class="info-box alert-box">
+            <span class="rule-pill">🪟 Regra 2: O segredo das 2 janelas</span>
+            <p>O OmniRoute precisa de <strong>duas janelas pretas abertas</strong>: uma é o motor ligado e a outra é onde você conversa com a IA. Não tente fazer tudo na mesma janela!</p>
           </div>
-          <div class="info-box">
-            <h3>💻 Execução no Terminal</h3>
-            <p>Roda comandos PowerShell/Bash, suítes de testes, linters e compilações, corrigindo erros automaticamente.</p>
+
+          <div class="info-box danger-box">
+            <span class="rule-pill">👻 Regra 3: A pasta "invisível"</span>
+            <p>Pastas que começam com ponto (ex: <code>.claude</code>) <strong>ficam invisíveis no Windows</strong>. Se você não vir a pasta no Explorer, ela NÃO sumiu, apenas está oculta.</p>
+          </div>
+
+          <div class="info-box success-box">
+            <span class="rule-pill">🟡 Regra 4: Texto amarelo não é erro</span>
+            <p>Avisos amarelos do <code>npm warn</code> são apenas informações. Você só deve se preocupar se o terminal fechar ou der um bloco vermelho grande.</p>
           </div>
         </div>
       </section>
 
-      <!-- Section 2 -->
-      <section id="custos">
-        <h2><span class="num">2</span> A Falácia do "Almoço 100% Grátis"</h2>
-        <p>
-          No ecossistema de Inteligência Artificial na nuvem, não existe computação ilimitada gratuita. Modelos como Claude 3.5 Sonnet ou GPT-4o exigem clusters de GPUs com altíssimo custo operacional.
-        </p>
-
-        <div class="card info-box alert-box">
-          <h3>⚠️ A armadilha dos modelos <code>:free</code></h3>
-          <p>
-            Provedores como o OpenRouter disponibilizam modelos gratuitos para <em>degustação e testes rápidos</em>. Quando um agente autônomo executa um loop de desenvolvimento (fazendo 30 a 50 chamadas de API em poucos minutos), a cota gratuita do dia é esgotada quase que instantaneamente, gerando o bloqueio <code>429</code>.
-          </p>
-        </div>
+      <!-- Section 2: Dicionário -->
+      <section id="dicionario">
+        <h2><span class="num">2</span> 📖 Dicionário do Aluno (Em linguagem simples)</h2>
+        <p>Entenda o que são esses nomes difíceis usando comparações do dia a dia:</p>
 
         <div class="table-wrapper">
           <table>
             <thead>
               <tr>
-                <th>Abordagem</th>
-                <th>Custo Médio</th>
-                <th>Estabilidade</th>
-                <th>Veredito</th>
+                <th>Nome Técnico</th>
+                <th>O que parece na vida real?</th>
+                <th>O que ele faz no computador?</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Modelos <code>:free</code> na Nuvem</strong></td>
-                <td>R$ 0,00</td>
-                <td>Baixa (Erro 429 constante)</td>
-                <td>Frustrante para uso diário em agentes.</td>
+                <td><strong>Agente de IA (Claude Code)</strong></td>
+                <td>Um estagiário de programação muito rápido.</td>
+                <td>Ele lê seus arquivos, cria código e roda testes direto no computador.</td>
               </tr>
               <tr>
-                <td><strong>Modelos Locais (Ollama)</strong></td>
-                <td>R$ 0,00 real</td>
-                <td>Alta (Roda na sua RAM)</td>
-                <td>Excelente para privacidade e sem limite de requisições.</td>
+                <td><strong>OmniRoute</strong></td>
+                <td>Um roteador Wi-Fi inteligente.</td>
+                <td>Fica na porta <code>20128</code> e escolhe a IA mais rápida e gratuita para te responder.</td>
               </tr>
               <tr>
-                <td><strong>Pay-as-you-go Ultrabarato</strong></td>
-                <td>R$ 5 a R$ 15 / mês</td>
-                <td>Máxima (Sem bloqueios)</td>
-                <td>Melhor custo-benefício (DeepSeek / Gemini Flash).</td>
+                <td><strong>API</strong></td>
+                <td>O garçom de um restaurante.</td>
+                <td>Leva a sua mensagem até o computador da Google/Anthropic e traz a resposta.</td>
+              </tr>
+              <tr>
+                <td><strong>Tokens</strong></td>
+                <td>Créditos ou contagem de palavras do SMS.</td>
+                <td>É a quantidade de texto que a IA lê e escreve por segundo.</td>
+              </tr>
+              <tr>
+                <td><strong>Fallback (Transbordo)</strong></td>
+                <td>O plano B da caixa d'água.</td>
+                <td>Se o Gemini bater o limite gratuito, a chamada pula pro Groq sozinho sem travar.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- Section 3: Tutorial Prático Pasta Única -->
-      <section id="tutorial-pratico">
-        <h2><span class="num">3</span> Tutorial Prático: Criando o Ambiente em Pasta Única</h2>
-        <p>
-          Roteiro completo para criar um ambiente autônomo do <strong>OmniRoute + Claude Code</strong> dentro de uma única pasta isolada pelo terminal do PowerShell:
-        </p>
+      <!-- Section 3: Tutorial Passo a Passo -->
+      <section id="tutorial-passo-a-passo">
+        <h2><span class="num">3</span> 💻 Passo a Passo no Terminal (Pasta Única)</h2>
+        <p>Siga os passos na ordem exata. Cada passo tem o botão de copiar e o que deve aparecer na sua tela.</p>
 
-        <div class="card-grid">
-          <div class="info-box">
-            <h3>Passo 1: Instalação das Ferramentas</h3>
-            <p>Instalação do Node.js LTS, Claude Code e OmniRoute globalmente no sistema.</p>
+        <!-- Passo 1 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 1</span>
+            <h3>Abrir o PowerShell</h3>
           </div>
-          <div class="info-box">
-            <h3>Passo 2: Estrutura Isolada</h3>
-            <p>Criação da pasta do projeto e subpasta <code>.claude/</code> com <code>.gitignore</code> de proteção.</p>
+          <p>Pressione a tecla <strong>Windows</strong> no teclado, digite <code>powershell</code> e aperte <strong>Enter</strong>.</p>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 2</span>
+            <h3>Criar a Pasta do seu Projeto</h3>
           </div>
-          <div class="info-box">
-            <h3>Passo 3: Gateway & Execução</h3>
-            <p>Configuração do <code>settings.local.json</code> para porta <code>20128</code> e execução do <code>claude</code>.</p>
+          <p>Copie o comando abaixo e cole no seu terminal para criar e entrar na pasta da aula:</p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell</span>
+              <button class="copy-btn" data-target="code-p2">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p2">mkdir C:\Users\$env:USERNAME\Projetos\meu-projeto-ia -Force
+cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
+mkdir .claude -Force</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Resultado esperado:</strong> O caminho do terminal vai mudar para <code>PS C:\Users\...\Projetos\meu-projeto-ia></code>.
           </div>
         </div>
 
-        <div class="code-box">
-          <div class="code-header">
-            <span>PowerShell - Passo a Passo em Pasta Única (Terminal)</span>
-            <button class="copy-btn" data-target="code-lab">Copiar</button>
+        <!-- Passo 3 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 3</span>
+            <h3>Criar o arquivo de Proteção (.gitignore)</h3>
           </div>
-          <pre><code id="code-lab"># 1. Instalar o Claude Code e OmniRoute (se ainda não tiver)
-npm install -g @anthropic-ai/claude-code
-npm install -g omniroute
+          <p>Esse arquivo protege você de enviar suas senhas para o GitHub sem querer:</p>
 
-# 2. Criar e entrar na pasta do projeto
-mkdir C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
-cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
-mkdir .claude
-
-# 3. Criar .gitignore de segurança (não expor chaves no GitHub)
-@'
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell</span>
+              <button class="copy-btn" data-target="code-p3">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p3">@'
 .claude/settings.local.json*
 *.env
 *.log
 *.sqlite*
-'@ | Out-File -FilePath .gitignore -Encoding utf8
+'@ | Out-File -FilePath .gitignore -Encoding utf8</code></pre>
+          </div>
+        </div>
 
-# 4. Criar a configuração .claude\settings.local.json apontando para o OmniRoute
-@'
+        <!-- Passo 4 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 4</span>
+            <h3>Configurar o Claude Code para usar o OmniRoute</h3>
+          </div>
+          <p>Cole este comando para criar a configuração que conecta o Claude Code ao OmniRoute local (porta 20128):</p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell</span>
+              <button class="copy-btn" data-target="code-p4">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p4">@'
 {
   "env": {
     "ANTHROPIC_BASE_URL": "http://localhost:20128",
@@ -201,147 +228,96 @@ mkdir .claude
   "model": "gratuitos",
   "disableClaudeAiConnectors": true
 }
-'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8
+'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Resultado esperado:</strong> O comando roda em silêncio (sem mensagem de erro).
+          </div>
+        </div>
 
-# 5. Iniciar o servidor OmniRoute (em segundo plano ou em outro terminal)
-omniroute serve
+        <!-- Passo 5 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 5</span>
+            <h3>Ligar o Motor do OmniRoute (Janela 1)</h3>
+          </div>
+          <p>Nesta primeira janela do terminal, inicie o servidor do OmniRoute:</p>
 
-# 6. Rodar o Claude Code na pasta do projeto!
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell (Janela 1)</span>
+              <button class="copy-btn" data-target="code-p5">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p5">omniroute serve</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Atenção:</strong> Esta janela vai ficar travada mostrando logs. <strong>NÃO FECHE ESSA JANELA!</strong> Ela precisa ficar aberta.
+          </div>
+        </div>
+
+        <!-- Passo 6 -->
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">PASSO 6</span>
+            <h3>Abrir a Segunda Janela e Chamar o Claude Code (Janela 2)</h3>
+          </div>
+          <p>
+            1. Abra uma <strong>nova janela</strong> do PowerShell (tecla Windows + <code>powershell</code>).<br>
+            2. Entre na pasta do projeto e rode o <code>claude</code>:
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell (Janela 2)</span>
+              <button class="copy-btn" data-target="code-p6">Copiar Comando</button>
+            </div>
+            <pre><code id="code-p6">cd C:\Users\$env:USERNAME\Projetos\meu-projeto-ia
 claude</code></pre>
-        </div>
-      </section>
-
-      <!-- Section 4 -->
-      <section id="fallback">
-        <h2><span class="num">4</span> Anatomia do Erro 429 & Roteamento em Cascata</h2>
-        <p>
-          O código <strong>HTTP 429 (Too Many Requests)</strong> ocorre quando o limite diário da sua conta é atingido. No OpenRouter, o bloqueio ocorre na <strong>chave da conta inteira</strong> — portanto, alternar entre dois modelos <code>:free</code> na mesma conta não resolve.
-        </p>
-
-        <h3>O Fluxo de Contingência (Fallback Real)</h3>
-        <p>A solução definitiva é configurar múltiplos provedores independentes em ordem de prioridade (estratégia <code>fill-first</code>):</p>
-
-        <div class="architecture-diagram">
-          <div class="flow-step">
-            <div class="step-icon" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">1</div>
-            <div>
-              <strong>Google Gemini (Google AI Studio)</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Cota gratuita generosa direta do provedor oficial.</p>
-            </div>
           </div>
-          <div class="flow-arrow">▼ (Se atingir limite 429)</div>
-          <div class="flow-step">
-            <div class="step-icon" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">2</div>
-            <div>
-              <strong>Groq Cloud (Llama 3.3 70B)</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Inferência em hardware LPU de altíssima velocidade.</p>
-            </div>
-          </div>
-          <div class="flow-arrow">▼ (Se atingir limite)</div>
-          <div class="flow-step">
-            <div class="step-icon" style="background: rgba(139, 92, 246, 0.2); color: #c084fc;">3</div>
-            <div>
-              <strong>DeepSeek / OpenRouter com Saldo Mínimo</strong>
-              <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Rede de segurança que conclui a tarefa custando frações de centavos.</p>
-            </div>
+          <div class="expected-output">
+            <strong>Resultado final com sucesso:</strong> O Claude Code abrirá mostrando o rostinho laranja e <code>gratuitos with high effort</code> pronto para você conversar!
           </div>
         </div>
       </section>
 
-      <!-- Section 5 -->
-      <section id="omniroute">
-        <h2><span class="num">5</span> Arquitetura e Comandos do OmniRoute</h2>
-        <p>
-          O <strong>OmniRoute</strong> funciona como um gateway local (porta <code>20128</code>) que intercepta as chamadas do Claude Code ou Cursor e faz o roteamento automático entre os provedores conectados.
-        </p>
-
-        <div class="code-box">
-          <div class="code-header">
-            <span>PowerShell - Comandos Essenciais do OmniRoute</span>
-            <button class="copy-btn" data-target="code-omniroute">Copiar</button>
-          </div>
-          <pre><code id="code-omniroute"># 1. Abrir o painel web de gerenciamento
-omniroute dashboard
-
-# 2. Testar saúde de todos os provedores conectados
-omniroute providers test-all
-
-# 3. Listar combos de roteamento ativos
-omniroute combo list
-
-# 4. Ativar o OmniRoute no Claude Code do projeto atual
-.\omniroute-on.ps1
-
-# 5. Desativar e voltar para a configuração padrão
-.\omniroute-off.ps1</code></pre>
-        </div>
-      </section>
-
-      <!-- Section 6 -->
-      <section id="claude-code">
-        <h2><span class="num">6</span> Claude Code: Boas Práticas e Comandos</h2>
-        <p>
-          Ao utilizar o Claude Code conectado via OmniRoute, algumas práticas garantem respostas rápidas e evitam consumo excessivo de contexto:
-        </p>
+      <!-- Section 4: Erros Comuns -->
+      <section id="erros-comuns">
+        <h2><span class="num">4</span> ⚠️ O que fazer se der erro?</h2>
 
         <div class="card-grid">
-          <div class="info-box success-box">
-            <h3>* Transfiguring...</h3>
-            <p>É a animação normal do Claude Code indicando que ele está processando a resposta e organizando as ferramentas.</p>
+          <div class="info-box danger-box">
+            <h3>Erro 429 (Rate Limit)</h3>
+            <p><strong>Causa:</strong> Você usou o modelo gratuito do OpenRouter até o fim da cota.<br>
+            <strong>Solução:</strong> Conecte múltiplos provedores (Gemini e Groq) no painel <code>omniroute dashboard</code>.</p>
           </div>
+
           <div class="info-box alert-box">
-            <h3>Atenção aos MCPs</h3>
-            <p>Servidores MCP sem autenticação ou em excesso podem enviar até <strong>150.000 tokens</strong> em uma saudação simples.</p>
+            <h3>* Transfiguring... (Demora para responder)</h3>
+            <p><strong>Causa:</strong> O Claude Code está processando ferramentas e lendo o projeto.<br>
+            <strong>Solução:</strong> Digite <code>/clear</code> no terminal para limpar a memória da conversa e deixar tudo mais rápido.</p>
           </div>
-        </div>
 
-        <div class="code-box">
-          <div class="code-header">
-            <span>Comandos no Terminal do Claude Code</span>
-            <button class="copy-btn" data-target="code-claude">Copiar</button>
+          <div class="info-box tip-box">
+            <h3>Como ver as opções?</h3>
+            <p>No terminal do Claude Code, digite apenas a barra <strong><code>/</code></strong> para ver opções como <code>/mcp</code>, <code>/model</code>, <code>/clear</code> e <code>/cost</code>.</p>
           </div>
-          <pre><code id="code-claude">/       # Abre o menu interativo com todas as opções
-/model  # Exibe o modelo ou combo ativo (ex: gratuitos)
-/mcp    # Gerencia e desativa servidores MCP pesados
-/clear  # Limpa o histórico da sessão e acelera as respostas
-/cost   # Mostra o consumo de tokens e estatísticas</code></pre>
         </div>
       </section>
 
-      <!-- Section 7 -->
-      <section id="github-deploy">
-        <h2><span class="num">7</span> Links para os Alunos e Publicação</h2>
-        <p>
-          Compartilhe os links abaixo diretamente com os alunos para que eles acessem o repositório e a página online da aula:
-        </p>
+      <!-- Section 5: Links -->
+      <section id="links-alunos">
+        <h2><span class="num">5</span> 🔗 Links Oficiais para a Turma</h2>
 
         <div class="card-grid">
           <div class="info-box success-box">
-            <h3>🔗 Link da Página Web (Alunos)</h3>
-            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">Página interativa com o tutorial completo:</p>
-            <p><a href="https://rcminitor.github.io/omniroute-aula/" target="_blank" style="color: var(--accent-cyan); word-break: break-all; font-weight: 600;">https://rcminitor.github.io/omniroute-aula/</a></p>
+            <h3>🌐 Página Web da Aula (Celular ou Computador)</h3>
+            <p><a href="https://rcminitor.github.io/omniroute-aula/" target="_blank" style="color: var(--accent-cyan); font-weight: 700; word-break: break-all;">https://rcminitor.github.io/omniroute-aula/</a></p>
           </div>
+
           <div class="info-box">
-            <h3>📦 Repositório GitHub</h3>
-            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">Código-fonte e arquivos de scripts:</p>
-            <p><a href="https://github.com/rcminitor/omniroute-aula" target="_blank" style="color: #c084fc; word-break: break-all; font-weight: 600;">https://github.com/rcminitor/omniroute-aula</a></p>
+            <h3>📦 Repositório no GitHub</h3>
+            <p><a href="https://github.com/rcminitor/omniroute-aula" target="_blank" style="color: #c084fc; font-weight: 700; word-break: break-all;">https://github.com/rcminitor/omniroute-aula</a></p>
           </div>
-        </div>
-
-        <h3>Comandos para Subir ao Repositório</h3>
-        <p>No seu terminal do PowerShell, execute os comandos abaixo para sincronizar com o seu GitHub:</p>
-
-        <div class="code-box">
-          <div class="code-header">
-            <span>PowerShell - Enviar para github.com/rcminitor/omniroute-aula</span>
-            <button class="copy-btn" data-target="code-git">Copiar</button>
-          </div>
-          <pre><code id="code-git"># 1. Configurar branch principal e vincular ao seu GitHub
-git branch -M main
-git remote add origin https://github.com/rcminitor/omniroute-aula.git
-
-# 2. Enviar os arquivos para o GitHub
-git push -u origin main</code></pre>
         </div>
       </section>
 
@@ -350,11 +326,11 @@ git push -u origin main</code></pre>
 
   <!-- Footer -->
   <footer>
-    <p>Guia de Agentes de IA & OmniRoute · Desenvolvido no Antigravity com Gemini · Pronto para GitHub Pages</p>
+    <p>IFCE Campus Caucaia · Disciplina de Inteligência Artificial · Prof. Romulo Cesar · Material Didático para Alunos</p>
   </footer>
 
   <!-- Toast Notification -->
-  <div id="toast">Copiado com sucesso!</div>
+  <div id="toast">Comando copiado!</div>
 
   <script src="script.js"></script>
 </body>
