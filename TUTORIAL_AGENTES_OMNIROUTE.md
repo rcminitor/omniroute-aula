@@ -1,13 +1,38 @@
-# 📘 Guia Prático: Agentes de IA, OmniRoute e Claude Code
+## 🔑 1. Onde Pegar as Chaves Gratuitas (Passo a Passo Visual)
 
-> **Instituto Federal do Ceará (IFCE) — Campus Caucaia**  
-> **Disciplina de Inteligência Artificial — Prof. Romulo Cesar** (`romulo.cesar@ifce.edu.br`)  
-> **Página Web Online para Alunos:** [https://rcminitor.github.io/omniroute-aula/](https://rcminitor.github.io/omniroute-aula/)  
-> **Repositório GitHub:** [https://github.com/rcminitor/omniroute-aula](https://github.com/rcminitor/omniroute-aula)
+Para a IA funcionar, você precisa de uma **Chave de API** (sua senha de acesso gratuita). Clique nos links abaixo:
+
+### 🟢 Opção 1: Google Gemini API (100% Gratuito Oficial)
+* 🔗 **Link direto:** [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+* **Onde clicar na tela:**
+  1. Faça login com seu Gmail normal.
+  2. Clique no botão azul **"Get API key"**.
+  3. Clique em **"Create API key"**.
+  4. Copie a chave (começa com `AIzaSy...`).
 
 ---
 
-## 🚨 1. Guia Rápido de Sobrevivência no Terminal (Leia Antes de Começar!)
+### 🟢 Opção 2: Groq Cloud - Llama 3.3 (Ultra-Rápido e Gratuito)
+* 🔗 **Link direto:** [https://console.groq.com/keys](https://console.groq.com/keys)
+* **Onde clicar na tela:**
+  1. Faça login com Google ou GitHub.
+  2. No menu da esquerda, clique em **"API Keys"**.
+  3. Clique no botão **"Create API Key"**.
+  4. Copie a chave (começa com `gsk_...`).
+
+---
+
+### ⚙️ Como colocar as chaves no OmniRoute:
+1. Abra o painel com o comando:
+   ```powershell
+   omniroute dashboard
+   ```
+2. Clique na aba lateral **"Providers"**.
+3. Cole a sua chave do Gemini ou Groq e clique em **Save**.
+
+---
+
+## 🚨 2. Guia Rápido de Sobrevivência no Terminal (Leia Antes de Começar!)
 
 Se você nunca usou o terminal ou não tem computador em casa, **não se preocupe!** Guarde estas 5 regras simples:
 
