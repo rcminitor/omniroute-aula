@@ -30,6 +30,7 @@
       padding: 0.9rem 1.2rem;
       margin: 0.75rem 0;
       font-size: 0.92rem;
+      display: none;
     }
     .screen-instruction .si-label {
       font-size: 0.75rem;
@@ -41,7 +42,7 @@
     }
     .btn-ui-action {
       display: inline-block;
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      background: #3b82f6;
       color: #fff !important;
       font-weight: 700;
       font-size: 0.82rem;
@@ -50,9 +51,21 @@
       font-family: "Inter", sans-serif;
       text-decoration: none;
     }
-    .btn-ui-green { background: linear-gradient(135deg, #10b981, #059669) !important; }
-    .btn-ui-orange { background: linear-gradient(135deg, #f97316, #ea580c) !important; }
-    .btn-ui-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important; }
+    .btn-ui-green { background: #10b981 !important; }
+    .btn-ui-orange { background: #f97316 !important; }
+    .btn-ui-purple { background: #8b5cf6 !important; }
+    .step-num-badge {
+      display: inline-block;
+      background: transparent !important;
+      color: #8b5cf6 !important;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-family: "Inter", sans-serif;
+      text-decoration: none;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
     .arrow-step {
       display: flex;
       align-items: flex-start;
@@ -162,17 +175,17 @@
       <div class="sidebar-box">
         <div class="sidebar-title">Roteiro da Aula</div>
         <ul class="nav-links">
-          <li><a href="#o-que-e-agente" class="active">1. &#129302; O que e Agente de IA?</a></li>
-          <li><a href="#falacia-gratis">2. &#128182; A Falacia do "Gratis" &amp; 429</a></li>
-          <li><a href="#sobrevivencia">3. &#128680; Dicas do Terminal</a></li>
-          <li><a href="#instalacao-passos">4. &#128187; Instalar Ferramentas</a></li>
-          <li><a href="#ligar-omniroute">5. &#9889; Ligar o OmniRoute</a></li>
-          <li><a href="#chaves-api">6. &#128273; Pegar as Chaves de API</a></li>
-          <li><a href="#configurar-combo">7. &#9881; Criar o Combo no Painel</a></li>
-          <li><a href="#execucao-final">8. &#128640; Rodar o Claude Code</a></li>
-          <li><a href="#telas-dicas">9. &#128065; Telas Reais &amp; Comandos</a></li>
-          <li><a href="#video-apoio">10. &#127909; Videos de Apoio</a></li>
-          <li><a href="#links-alunos">11. &#128279; Links &amp; Materiais</a></li>
+          <li><a href="#o-que-e-agente" class="active">1. O que e Agente de IA?</a></li>
+          <li><a href="#falacia-gratis">2. A Falacia do "Gratis" &amp; 429</a></li>
+          <li><a href="#sobrevivencia">3. Dicas do Terminal</a></li>
+          <li><a href="#instalacao-passos">4. Instalar Ferramentas</a></li>
+          <li><a href="#ligar-omniroute">5. Ligar o OmniRoute</a></li>
+          <li><a href="#chaves-api">6. Pegar as Chaves de API</a></li>
+          <li><a href="#configurar-combo">7. Criar o Combo no Painel</a></li>
+          <li><a href="#execucao-final">8. Rodar o Claude Code</a></li>
+          <li><a href="#telas-dicas">9. Telas Reais &amp; Comandos</a></li>
+          <li><a href="#video-apoio">10. Videos de Apoio</a></li>
+          <li><a href="#links-alunos">11. Links &amp; Materiais</a></li>
         </ul>
       </div>
     </aside>
@@ -190,22 +203,22 @@
 
       <!-- Section 1: O que e um Agente de IA -->
       <section id="o-que-e-agente">
-        <h2><span class="num">1</span> &#129302; O que e um Agente de IA? (Entenda antes de instalar)</h2>
+        <h2><span class="num">1</span> O que e um Agente de IA? (Entenda antes de instalar)</h2>
         <p>Antes de tocar no teclado, voce precisa entender o que vamos fazer hoje. Nao e usar um chatbot normal. Hoje vamos montar um <strong>sistema de agentes autonomos</strong> que <em>age</em>, nao apenas responde.</p>
 
         <div class="card info-box" style="border-left: 4px solid var(--accent-purple); margin-bottom: 1.5rem;">
-          <h3>&#129358; Analogia: Chatbot vs. Agente</h3>
+          <h3>Analogia: Chatbot vs. Agente</h3>
           <p>
             <strong>Um chatbot comum</strong> (ex: ChatGPT na tela) e como um chef que te manda a receita por mensagem de texto. Voce que tem que ir para a cozinha e cozinhar.<br><br>
             <strong>Um Agente de IA</strong> e como um chef que <em>entra na sua cozinha</em>, abre a geladeira, le os ingredientes, acende o fogao, cozinha o prato e coloca na mesa. Voce so pede: <em>"Quero uma massa ao molho pesto"</em> e espera pronto.
           </p>
         </div>
 
-        <h3>&#128295; As 3 ferramentas que vamos usar hoje:</h3>
+        <h3>As 3 ferramentas que vamos usar hoje:</h3>
         <div class="card-grid">
           <div class="agente-card">
             <div class="tag">Agente Principal</div>
-            <h3>&#129302; Claude Code</h3>
+            <h3>Claude Code</h3>
             <p>E o <strong>agente</strong> que fica na "tela preta" (terminal/PowerShell). Voce conversa com ele em portugues, pede para criar codigo, analisar arquivos, debugar erros - e ele <em>age diretamente no computador</em>: cria pastas, escreve arquivos, roda testes, tudo sozinho.</p>
             <p style="font-size:0.82rem; background: rgba(0,0,0,0.3); padding: 0.5rem 0.7rem; border-radius: 8px; margin-top: 0.25rem;">
               &#128204; Instalado via npm e roda no terminal.<br>
@@ -214,7 +227,7 @@
           </div>
           <div class="agente-card">
             <div class="tag" style="background:rgba(59,130,246,0.2); color: #60a5fa;">Roteador Local</div>
-            <h3>&#128256; OmniRoute</h3>
+            <h3>OmniRoute</h3>
             <p>E um <strong>programa que fica rodando no seu computador</strong> como um servidor local (na porta <code>20128</code>). Ele intercepta os pedidos do Claude Code e os redireciona para provedores de IA <em>gratuitos</em>, como Google Gemini e Groq.</p>
             <p style="font-size:0.82rem; background: rgba(0,0,0,0.3); padding: 0.5rem 0.7rem; border-radius: 8px; margin-top: 0.25rem;">
               &#128204; Tem um painel visual no navegador (localhost:20128).<br>
@@ -223,7 +236,7 @@
           </div>
           <div class="agente-card">
             <div class="tag" style="background:rgba(16,185,129,0.2); color: #34d399;">Provedores Externos</div>
-            <h3>&#128994; Google Gemini &amp; Groq</h3>
+            <h3>Google Gemini &amp; Groq</h3>
             <p>Sao os <strong>servidores de IA</strong> que realmente "pensam". O Gemini fica na nuvem da Google e o Groq em chips ultra-rapidos nos EUA. Ambos tem <strong>cotas gratuitas oficiais</strong> suficientes para usar em sala de aula.</p>
             <p style="font-size:0.82rem; background: rgba(0,0,0,0.3); padding: 0.5rem 0.7rem; border-radius: 8px; margin-top: 0.25rem;">
               &#128204; Voce precisa criar uma conta gratuita em cada site.<br>
@@ -232,10 +245,10 @@
           </div>
         </div>
 
-        <h3 style="margin-top: 1.75rem;">&#128202; Como tudo se conecta (fluxo completo):</h3>
+        <h3 style="margin-top: 1.75rem;">Como tudo se conecta (fluxo completo):</h3>
         <div class="architecture-diagram">
           <div class="flow-step">
-            <div class="step-icon" style="background: rgba(249,115,22,0.2); color: #fb923c;">&#128483;</div>
+            <div class="step-icon" style="background: rgba(249,115,22,0.2); color: #fb923c;">→</div>
             <div>
               <strong>Voce digita no Claude Code (terminal)</strong>
               <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Exemplo: "Crie uma pagina HTML com formulario de login"</p>
@@ -243,7 +256,7 @@
           </div>
           <div class="flow-arrow">&#9660; Claude Code envia o pedido para localhost:20128</div>
           <div class="flow-step">
-            <div class="step-icon" style="background: rgba(139,92,246,0.2); color: #c084fc;">&#128256;</div>
+            <div class="step-icon" style="background: rgba(139,92,246,0.2); color: #c084fc;">→</div>
             <div>
               <strong>OmniRoute (rodando na sua maquina, porta 20128)</strong>
               <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Recebe o pedido, olha qual provedor esta disponivel, e encaminha.</p>
@@ -251,7 +264,7 @@
           </div>
           <div class="flow-arrow">&#9660; Encaminha para Google Gemini (1a prioridade)</div>
           <div class="flow-step">
-            <div class="step-icon" style="background: rgba(66,133,244,0.2); color: #60a5fa;">&#129504;</div>
+            <div class="step-icon" style="background: rgba(66,133,244,0.2); color: #60a5fa;">→</div>
             <div>
               <strong>Google Gemini / Groq Cloud (IA na nuvem)</strong>
               <p style="margin:0; font-size: 0.85rem; color: var(--text-muted);">Processa o pedido e devolve a resposta em segundos.</p>
@@ -270,18 +283,18 @@
 
       <!-- Section 2 -->
       <section id="falacia-gratis">
-        <h2><span class="num">2</span> &#128182; A Falacia do "Almoco 100% Gratis" &amp; Erro 429</h2>
+        <h2><span class="num">2</span> A Falacia do "Almoco 100% Gratis" &amp; Erro 429</h2>
         <p>Muitos videos na internet prometem <em>"Claude Code ilimitado e 100% gratis para sempre"</em>. Na pratica, <strong>isso e uma ilusao tecnica</strong>. Voce precisa entender por que antes de frustrar-se no laboratorio.</p>
 
         <div class="card info-box alert-box">
-          <h3>&#9888; Por que o "100% gratis na nuvem" trava? (O Erro 429)</h3>
+          <h3>Por que o "100% gratis na nuvem" trava? (O Erro 429)</h3>
           <p>
             Rodar Inteligencia Artificial exige supercomputadores com placas de video caras (GPUs H100 da NVIDIA). Plataformas como o OpenRouter dao modelos <code>:free</code> apenas para pequenos testes. Como o agente faz 40+ chamadas em 5 minutos, a cota diaria zera e aparece o erro:<br><br>
             <code style="color:#ef4444; background: rgba(0,0,0,0.5); padding: 0.3rem 0.6rem; display: inline-block; border-radius: 6px;">API Error: Request rejected (429) - Rate limit exceeded: free-models-per-day</code>
           </p>
         </div>
 
-        <h3>&#9989; A Solucao da Aula: Roteamento com Fallback</h3>
+        <h3>A Solucao da Aula: Roteamento com Fallback</h3>
         <p>Para a sua aula nao travar, usamos o <strong>OmniRoute</strong> conectando multiplos provedores independentes. Se a cota de um zerar, ele pula para o outro automaticamente:</p>
 
         <div class="combo-visual">
@@ -313,33 +326,30 @@
           </div>
         </div>
 
-        <div class="click-here-box">
-          <div class="ch-icon">&#128161;</div>
-          <p>
-            <strong>Resumo para a aula:</strong> Voce vai criar uma conta gratuita no Google AI Studio e no Groq, pegar a chave de cada um e cadastrar no OmniRoute. Isso cria o combo que nunca trava - mesmo que uma cota estoure, o outro assume na hora.
-          </p>
-        </div>
+        <p style="background: rgba(251, 146, 60, 0.1); border-left: 4px solid #fb923c; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Resumo para a aula:</strong> Voce vai criar uma conta gratuita no Google AI Studio e no Groq, pegar a chave de cada um e cadastrar no OmniRoute. Isso cria o combo que nunca trava - mesmo que uma cota estoure, o outro assume na hora.
+        </p>
       </section>
 
       <!-- Section 3 -->
       <section id="sobrevivencia">
-        <h2><span class="num">3</span> &#128680; Dicas de Sobrevivencia (Antes de Mexer no Teclado)</h2>
+        <h2><span class="num">3</span> Dicas de Sobrevivencia (Antes de Mexer no Teclado)</h2>
         <p>Se voce nunca usou o terminal ou nao tem computador em casa, guarde estas 4 regras praticas:</p>
         <div class="card-grid">
           <div class="info-box tip-box">
-            <span class="rule-pill">&#128432; Como colar no terminal</span>
+            <span class="rule-pill">Como colar no terminal</span>
             <p>Clique no botao roxo de copiar. Na tela preta (PowerShell), basta dar <strong>um clique com o botao direito do mouse</strong> que o texto cola sozinho.</p>
           </div>
           <div class="info-box alert-box">
-            <span class="rule-pill">&#128039; O segredo das 2 janelas</span>
+            <span class="rule-pill">O segredo das 2 janelas</span>
             <p>O OmniRoute precisa de <strong>duas janelas pretas abertas</strong>: Janela 1 (motor ligado) e Janela 2 (conversa com o Claude). Nao tente fazer tudo em uma janela so!</p>
           </div>
           <div class="info-box danger-box">
-            <span class="rule-pill">&#128123; A pasta invisivel</span>
+            <span class="rule-pill">A pasta invisivel</span>
             <p>Pastas com ponto na frente (ex: <code>.claude</code>) <strong>ficam invisiveis no Windows</strong>. Se voce nao vir a pasta no Explorer, ela NAO sumiu, esta oculta.</p>
           </div>
           <div class="info-box success-box">
-            <span class="rule-pill">&#128993; Texto amarelo nao e erro</span>
+            <span class="rule-pill">Texto amarelo nao e erro</span>
             <p>Avisos amarelos do <code>npm warn</code> sao apenas informacoes. Voce so deve se preocupar se o terminal fechar ou der uma mensagem vermelha.</p>
           </div>
         </div>
@@ -347,16 +357,16 @@
 
       <!-- Section 4 -->
       <section id="instalacao-passos">
-        <h2><span class="num">4</span> &#128187; Mao na Massa: Instalando Ferramentas e Criando o Projeto</h2>
+        <h2><span class="num">4</span> Mao na Massa: Instalando Ferramentas e Criando o Projeto</h2>
         <p>Agora vamos comecar a preparar o computador. Siga os passos na ordem exata:</p>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge" style="background: var(--accent-cyan); color: #000;">PASSO 0 (OBRIGATORIO)</span>
+            <span class="step-num-badge" style="background: var(--accent-cyan); color: #000;">4.0 Verificacao de Pre-requisitos</span>
             <h3>Abrir o PowerShell e Testar se o Node.js existe</h3>
           </div>
           <div class="screen-instruction">
-            <div class="si-label">&#128432; Como Abrir o PowerShell</div>
+            <div class="si-label">Como Abrir o PowerShell</div>
             Pressione a tecla <strong>Windows</strong> no teclado &rarr; Comece a digitar <code>powershell</code> &rarr; Clique em <strong>"Windows PowerShell"</strong> nos resultados. Uma janela preta vai abrir.
           </div>
           <p>Dentro da janela preta, <strong>copie e cole o comando abaixo</strong> e pressione <kbd>Enter</kbd>:</p>
@@ -369,11 +379,11 @@
           </div>
           <div class="card-grid" style="margin: 1rem 0;">
             <div class="info-box success-box">
-              <strong>&#9989; Se apareceu um numero (ex: v20.x ou v22.x):</strong>
+              <strong>Se apareceu um numero (ex: v20.x ou v22.x):</strong>
               <p style="margin:0; font-size: 0.88rem;">O Node.js e o npm ja estao instalados! Pule direto para o <strong>Passo 1</strong>.</p>
             </div>
             <div class="info-box danger-box">
-              <strong>&#10060; Se deu texto vermelho (Comando nao reconhecido):</strong>
+              <strong>Se deu texto vermelho (Comando nao reconhecido):</strong>
               <p style="margin:0; font-size: 0.88rem;">O computador nao tem Node.js. Instale com o comando abaixo:</p>
             </div>
           </div>
@@ -391,7 +401,7 @@
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">PASSO 1</span>
+            <span class="step-num-badge">4.1 Instalar Pacotes</span>
             <h3>Instalar o Claude Code e o OmniRoute</h3>
           </div>
           <p>Instale os dois programas necessarios via <code>npm</code>:</p>
@@ -410,7 +420,7 @@ npm install -g omniroute</code></pre>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">PASSO 2</span>
+            <span class="step-num-badge">4.2 Criar Pasta do Projeto</span>
             <h3>Criar a Pasta Isolada do Projeto</h3>
           </div>
           <p>Copie e cole para criar a pasta da aula e a subpasta oculta <code>.claude</code>:</p>
@@ -430,7 +440,7 @@ mkdir .claude -Force</code></pre>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">PASSO 3</span>
+            <span class="step-num-badge">4.3 Proteger Dados Sensíveis</span>
             <h3>Criar o arquivo de Protecao (.gitignore)</h3>
           </div>
           <p>Gera o arquivo que impede que senhas e dados locais subam para a internet:</p>
@@ -450,7 +460,7 @@ mkdir .claude -Force</code></pre>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">PASSO 4</span>
+            <span class="step-num-badge">4.4 Conectar ao OmniRoute</span>
             <h3>Configurar o Claude Code para usar o OmniRoute</h3>
           </div>
           <p>Cria a configuracao que conecta o Claude Code ao gateway local (porta 20128):</p>
@@ -477,26 +487,23 @@ mkdir .claude -Force</code></pre>
 '@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8</code></pre>
           </div>
           <div class="expected-output">
-            <strong>&#9989; Pronto!</strong> As ferramentas estao instaladas. Agora vamos <strong>ligar o servidor OmniRoute</strong> antes de continuar.
+            <strong>Pronto!</strong> As ferramentas estao instaladas. Agora vamos <strong>ligar o servidor OmniRoute</strong> antes de continuar.
           </div>
         </div>
       </section>
 
       <!-- Section 5: Ligar o OmniRoute -->
       <section id="ligar-omniroute">
-        <h2><span class="num">5</span> &#9889; Ligar o OmniRoute (Fazer o Servidor Funcionar)</h2>
+        <h2><span class="num">5</span> Ligar o OmniRoute (Fazer o Servidor Funcionar)</h2>
         <p>Antes de cadastrar as chaves ou usar o Claude, voce precisa <strong>ligar o servidor OmniRoute</strong>. Sem ele ligado, nada funciona. Este e o "motor" que precisa estar sempre rodando.</p>
 
-        <div class="click-here-box" style="border-color: #ef4444; background: rgba(239,68,68,0.08);">
-          <div class="ch-icon">&#128680;</div>
-          <p>
-            <strong>IMPORTANTE:</strong> O servidor precisa estar ligado em <em>uma janela do terminal dedicada</em> que voce <strong>NUNCA pode fechar</strong> enquanto esta usando o Claude Code. Pense nela como o motor de um carro - se apagar, o carro para.
-          </p>
-        </div>
+        <p style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>IMPORTANTE:</strong> O servidor precisa estar ligado em <em>uma janela do terminal dedicada</em> que voce <strong>NUNCA pode fechar</strong> enquanto esta usando o Claude Code. Pense nela como o motor de um carro - se apagar, o carro para.
+        </p>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge" style="background: #ef4444;">JANELA 1 - O Motor</span>
+            <span class="step-num-badge" style="background: #ef4444;">5.1 Iniciar o Servidor OmniRoute</span>
             <h3>Iniciar o servidor OmniRoute</h3>
           </div>
           <p>Abra <strong>uma nova janela do PowerShell</strong> (Windows + digitar powershell) e rode:</p>
@@ -510,27 +517,24 @@ mkdir .claude -Force</code></pre>
           <div class="expected-output">
             <strong>Esta janela vai ficar "parada"</strong> mostrando logs. Isso e normal. <strong>NAO FECHE essa janela!</strong>
           </div>
-          <div class="click-here-box">
-            <div class="ch-icon">&#9989;</div>
-            <p>
-              <strong>Sinal de que funcionou:</strong> Voce vera na tela algo como <code style="color: #34d399;">Server started on http://localhost:20128</code>. Quando aparecer isso, o motor esta ligado!
-            </p>
-          </div>
+        <p style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #34d399; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Sinal de que funcionou:</strong> Voce vera na tela algo como <code style="color: #34d399;">Server started on http://localhost:20128</code>. Quando aparecer isso, o motor esta ligado!
+        </p>
         </div>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge" style="background: #8b5cf6;">ACESSAR O PAINEL VISUAL</span>
+            <span class="step-num-badge" style="background: #8b5cf6;">5.2 Acessar o Painel Visual</span>
             <h3>Abrir o Painel do OmniRoute no Navegador</h3>
           </div>
           <p>Com o servidor ligado, <strong>abra seu navegador</strong> (Chrome, Edge ou Firefox) e acesse:</p>
           <div style="margin: 1rem 0;">
-            <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);">
+            <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: #8b5cf6;">
               Abrir Painel OmniRoute (localhost:20128) &#8599;
             </a>
           </div>
           <div class="screen-instruction">
-            <div class="si-label">&#128421; O que voce vai ver na tela do painel</div>
+            <div class="si-label">O que voce vai ver na tela do painel</div>
             Uma interface escura com o logo do OmniRoute. No <strong>menu da esquerda</strong> voce vera as opcoes: <strong>Dashboard</strong>, <strong>Providers</strong>, <strong>Combos</strong>, e <strong>Logs</strong>. Isso significa que o servidor esta funcionando corretamente!
           </div>
         </div>
@@ -538,15 +542,12 @@ mkdir .claude -Force</code></pre>
 
       <!-- Section 6: Chaves de API -->
       <section id="chaves-api">
-        <h2><span class="num">6</span> &#128273; Pegar as Chaves Gratuitas de API</h2>
+        <h2><span class="num">6</span> Pegar as Chaves Gratuitas de API</h2>
         <p>Agora que o servidor esta rodando, <strong>vamos buscar as chaves nos sites oficiais</strong>. Cada chave e como uma senha que autoriza o OmniRoute a usar os modelos de IA.</p>
 
-        <div class="click-here-box">
-          <div class="ch-icon">&#128203;</div>
-          <p>
-            <strong>Dica:</strong> Abra os dois sites abaixo em abas separadas do navegador, copie as chaves e deixe um bloco de notas (Notepad) aberto para colar temporariamente. Voce vai precisar das duas chaves no proximo passo.
-          </p>
-        </div>
+        <p style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Dica:</strong> Abra os dois sites abaixo em abas separadas do navegador, copie as chaves e deixe um bloco de notas (Notepad) aberto para colar temporariamente. Voce vai precisar das duas chaves no proximo passo.
+        </p>
 
         <div class="card-grid">
           <div class="portal-card" style="border-top: 3px solid var(--accent-google);">
@@ -582,7 +583,7 @@ mkdir .claude -Force</code></pre>
                 </div>
               </div>
             </div>
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-open-site" style="background: #4285f4;">
               Abrir Google AI Studio &#8599;
             </a>
           </div>
@@ -620,7 +621,7 @@ mkdir .claude -Force</code></pre>
                 </div>
               </div>
             </div>
-            <a href="https://console.groq.com/keys" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+            <a href="https://console.groq.com/keys" target="_blank" class="btn-open-site" style="background: #f97316;">
               Abrir Groq Cloud &#8599;
             </a>
           </div>
@@ -629,21 +630,21 @@ mkdir .claude -Force</code></pre>
 
       <!-- Section 7: Configurar Combo -->
       <section id="configurar-combo">
-        <h2><span class="num">7</span> &#9881; Cadastrar Provedores e Criar o Combo no Painel</h2>
+        <h2><span class="num">7</span> Cadastrar Provedores e Criar o Combo no Painel</h2>
         <p>Agora vamos entrar no painel do OmniRoute, colar as chaves e criar o <strong>Combo de Fallback</strong>. Lembre-se: o servidor precisa estar ligado (Secao 5)!</p>
         <div style="margin-bottom: 1.25rem;">
-          <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);">
+          <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: #8b5cf6;">
             Abrir Painel OmniRoute (localhost:20128) &#8599;
           </a>
         </div>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">ETAPA A</span>
+            <span class="step-num-badge">7.1 Cadastrar Provedores</span>
             <h3>Entrar na tela de Providers e Cadastrar os Provedores</h3>
           </div>
           <div class="screen-instruction">
-            <div class="si-label">&#128421; Voce esta no painel do OmniRoute</div>
+            <div class="si-label">Voce esta no painel do OmniRoute</div>
             Olhe para o <strong>menu lateral da esquerda</strong>. Voce vera opcoes como Dashboard, Providers, Combos, Logs. Clique em <span class="btn-ui-action btn-ui-purple">Providers</span>.
           </div>
           <div class="steps-list" style="margin: 1rem 0;">
@@ -664,21 +665,18 @@ mkdir .claude -Force</code></pre>
               <span>Clique no botao <span class="btn-ui-action btn-ui-green">Save</span> ou <span class="btn-ui-action btn-ui-green">Connect</span>. Um icone verde &#9989; deve aparecer indicando que esta conectado.</span>
             </div>
           </div>
-          <div class="click-here-box">
-            <div class="ch-icon">&#128260;</div>
-            <p>
-              <strong>Agora repita o processo para o Groq:</strong> Clique novamente em <span class="btn-ui-action btn-ui-green">+ Add Provider</span>, selecione <strong>"Groq"</strong>, cole a chave <code>gsk_...</code> e clique em <span class="btn-ui-action btn-ui-green">Save</span>.
-            </p>
-          </div>
+        <p style="background: rgba(249, 115, 22, 0.1); border-left: 4px solid #fb923c; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Agora repita o processo para o Groq:</strong> Clique novamente em <span class="btn-ui-action btn-ui-green">+ Add Provider</span>, selecione <strong>"Groq"</strong>, cole a chave <code>gsk_...</code> e clique em <span class="btn-ui-action btn-ui-green">Save</span>.
+        </p>
         </div>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">ETAPA B</span>
+            <span class="step-num-badge">7.2 Criar o Combo</span>
             <h3>Criar o Combo "gratuitos" (Roteamento com Fallback)</h3>
           </div>
           <div class="screen-instruction">
-            <div class="si-label">&#128421; Navegue para a tela de Combos</div>
+            <div class="si-label">Navegue para a tela de Combos</div>
             No menu lateral da esquerda, clique em <span class="btn-ui-action btn-ui-purple">Combos</span>.
           </div>
           <p>O combo e a lista de prioridades que faz o transbordo automatico se um provedor travar:</p>
@@ -709,13 +707,13 @@ mkdir .claude -Force</code></pre>
             </div>
           </div>
           <div class="expected-output">
-            <strong>&#9989; Resultado esperado:</strong> O combo "gratuitos" aparece na lista com status <strong>Active/Enabled</strong>. Isso significa que o roteamento automatico com fallback esta configurado!
+            <strong>Resultado esperado:</strong> O combo "gratuitos" aparece na lista com status <strong>Active/Enabled</strong>. Isso significa que o roteamento automatico com fallback esta configurado!
           </div>
         </div>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">ETAPA C</span>
+            <span class="step-num-badge">7.3 Testar Provedores</span>
             <h3>Testar se os Provedores estao Respondendo</h3>
           </div>
           <p>Antes de abrir o Claude Code, rode este comando em uma <strong>nova janela do PowerShell</strong>:</p>
@@ -734,19 +732,16 @@ mkdir .claude -Force</code></pre>
 
       <!-- Section 8: Execucao Final -->
       <section id="execucao-final">
-        <h2><span class="num">8</span> &#128640; Ligar e Rodar o Claude Code</h2>
+        <h2><span class="num">8</span> Ligar e Rodar o Claude Code</h2>
         <p>Com tudo testado e verificado, vamos colocar tudo para rodar em 2 passos simples:</p>
 
-        <div class="click-here-box">
-          <div class="ch-icon">&#9888;</div>
-          <p>
-            <strong>Verifique antes de continuar:</strong> A Janela 1 (com <code>omniroute serve</code>) ainda esta aberta? Se tiver fechado por acidente, abra novamente e rode <code>omniroute serve</code> antes de continuar.
-          </p>
-        </div>
+        <p style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Verifique antes de continuar:</strong> A Janela 1 (com <code>omniroute serve</code>) ainda esta aberta? Se tiver fechado por acidente, abra novamente e rode <code>omniroute serve</code> antes de continuar.
+        </p>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge">PASSO 5 - JANELA 2</span>
+            <span class="step-num-badge">8.1 Abrir Nova Sessao</span>
             <h3>Abrir uma Nova Janela e Rodar o Claude Code</h3>
           </div>
           <p>
@@ -768,7 +763,7 @@ claude</code></pre>
 
         <div class="step-container">
           <div class="step-header">
-            <span class="step-num-badge" style="background: var(--accent-emerald); color: #000;">PASSO 6 - CRIAR PRIMEIRO TEXTO</span>
+            <span class="step-num-badge" style="background: var(--accent-emerald); color: #000;">8.2 Primeiro Teste</span>
             <h3>Primeiro Teste: Pedir ao Claude para Criar um Arquivo</h3>
           </div>
           <p>Com o Claude Code aberto e funcionando, vamos fazer um primeiro teste simples. <strong>Digite o pedido abaixo e pressione Enter</strong>:</p>
@@ -779,18 +774,15 @@ claude</code></pre>
             </div>
             <pre><code id="code-first-test">Crie um arquivo chamado ola.txt com o texto "Ola, Agente! Funcionou!" dentro.</code></pre>
           </div>
-          <div class="click-here-box">
-            <div class="ch-icon">&#128065;</div>
-            <p>
-              <strong>Observe o que vai acontecer:</strong> O Claude vai <em>agir autonomamente</em> - voce vera ele criar o arquivo, escrever o conteudo e confirmar. Depois abra o Explorador de Arquivos e procure o arquivo <code>ola.txt</code> na pasta <code>meu-projeto-ia</code> para confirmar!
-            </p>
-          </div>
+        <p style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0;">
+          <strong>Observe o que vai acontecer:</strong> O Claude vai <em>agir autonomamente</em> - voce vera ele criar o arquivo, escrever o conteudo e confirmar. Depois abra o Explorador de Arquivos e procure o arquivo <code>ola.txt</code> na pasta <code>meu-projeto-ia</code> para confirmar!
+        </p>
         </div>
       </section>
 
       <!-- Section 9: Telas -->
       <section id="telas-dicas">
-        <h2><span class="num">9</span> &#128065; Telas Reais &amp; Comandos Uteis</h2>
+        <h2><span class="num">9</span> Telas Reais &amp; Comandos Uteis</h2>
         <h3>Como deve ficar o terminal do Claude Code funcionando:</h3>
         <div class="mock-terminal">
           <div class="mock-terminal-header">
@@ -819,57 +811,53 @@ claude</code></pre>
         <h3 style="margin-top: 1.5rem;">Comandos que voce vai usar durante a aula:</h3>
         <div class="card-grid">
           <div class="info-box success-box">
-            <h3><code>* Transfiguring...</code> (Processando)</h3>
-            <p>E a animacao normal do Claude Code indicando que ele esta processando. Aguarde - nao aperte nada!</p>
+            <h3><code>* Transfiguring...</code></h3>
+            <p><strong>Processando:</strong> E a animacao normal do Claude Code indicando que ele esta processando. Aguarde - nao aperte nada!</p>
           </div>
           <div class="info-box alert-box">
-            <h3>Comando <code>/clear</code> (Ficar mais rapido)</h3>
-            <p>Se a conversa comecar a demorar, digite <code>/clear</code> no terminal para limpar o historico e acelerar as respostas.</p>
+            <h3><strong>/clear</strong></h3>
+            <p><strong>Ficar mais rapido:</strong> Se a conversa comecar a demorar, digite <code>/clear</code> no terminal para limpar o historico e acelerar as respostas.</p>
           </div>
           <div class="info-box">
-            <h3>Comando <code>/exit</code> (Sair)</h3>
-            <p>Para fechar o Claude Code, digite <code>/exit</code> ou pressione Ctrl+C.</p>
+            <h3><strong>/exit</strong></h3>
+            <p><strong>Sair:</strong> Para fechar o Claude Code, digite <code>/exit</code> ou pressione Ctrl+C.</p>
           </div>
           <div class="info-box tip-box">
-            <h3>Verificar se OmniRoute esta OK</h3>
-            <p>A qualquer momento, rode <code>omniroute providers test-all</code> em uma nova janela para checar o status dos provedores.</p>
+            <h3><strong>omniroute providers test-all</strong></h3>
+            <p><strong>Verificar status:</strong> A qualquer momento, rode este comando em uma nova janela para checar o status dos provedores.</p>
           </div>
         </div>
       </section>
 
       <!-- Section 10: Video -->
       <section id="video-apoio">
-        <h2><span class="num">10</span> &#127909; Video de Apoio no YouTube</h2>
+        <h2><span class="num">10</span> Video de Apoio no YouTube</h2>
         <p>Veja um exemplo real de como o Claude Code funciona executando um projeto com OmniRoute e modelos gratuitos:</p>
 
-        <div class="info-box tip-box">
-          <h3>&#128250; Claude Code em Acao - Demonstracao Pratica</h3>
-          <p style="margin-bottom:0.75rem;">Demonstracao pratica do Claude Code funcionando autonomamente com o OmniRoute e modelos de IA gratuitos:</p>
-          <a href="https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s" target="_blank" class="btn-open-site" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-            Assistir no YouTube (a partir de 20:15) &#8599;
-          </a>
-        </div>
+        <a href="https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s" target="_blank" class="btn-open-site" style="background: #6366f1; display: inline-block; margin-top: 1rem;">
+          Assistir no YouTube (a partir de 20:15) &#8599;
+        </a>
       </section>
 
       <!-- Section 11: Links -->
       <section id="links-alunos">
-        <h2><span class="num">11</span> &#128279; Links Oficiais para a Turma</h2>
+        <h2><span class="num">11</span> Links Oficiais para a Turma</h2>
         <div class="card-grid">
           <div class="info-box success-box">
-            <h3>&#127760; Pagina Web da Aula</h3>
+            <h3>Pagina Web da Aula</h3>
             <p><a href="https://rcminitor.github.io/omniroute-aula/" target="_blank" style="color: var(--accent-cyan); font-weight: 700; word-break: break-all;">https://rcminitor.github.io/omniroute-aula/</a></p>
           </div>
           <div class="info-box">
-            <h3>&#128230; Repositorio no GitHub</h3>
+            <h3>Repositorio no GitHub</h3>
             <p><a href="https://github.com/rcminitor/omniroute-aula" target="_blank" style="color: #c084fc; font-weight: 700; word-break: break-all;">https://github.com/rcminitor/omniroute-aula</a></p>
           </div>
           <div class="info-box tip-box">
-            <h3>&#128218; Documentacao OmniRoute</h3>
+            <h3>Documentacao OmniRoute</h3>
             <p style="margin-bottom: 0.75rem;">Referencia tecnica de combos, compressao de tokens e configuracoes avancadas:</p>
             <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-open-site">Ver no GitHub &#8599;</a>
           </div>
           <div class="info-box">
-            <h3>&#128273; Sites para pegar as chaves</h3>
+            <h3>Sites para pegar as chaves</h3>
             <p>
               <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #60a5fa; font-weight: 600; display: block; margin-bottom: 0.35rem;">&#8594; Google AI Studio (Gemini)</a>
               <a href="https://console.groq.com/keys" target="_blank" style="color: #fb923c; font-weight: 600; display: block;">&#8594; Groq Cloud (Llama 3)</a>
