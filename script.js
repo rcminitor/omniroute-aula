@@ -119,7 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
   // Graphify Interactive Knowledge Graph
+  // DISABLED: graphify-out directory has been removed from the project
   // ==========================================================================
+  /*
   function initGraphify() {
     const container = document.getElementById('graph-canvas-area');
     if (!container || typeof vis === 'undefined') return;
@@ -428,7 +430,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+  */
 
-  initGraphify();
+  // initGraphify(); // Disabled: graphify-out directory removed
 });
 

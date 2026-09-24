@@ -28,7 +28,6 @@
         <a href="#chaves-api">6. Chaves</a>
         <a href="#configurar-combo">7. Combo</a>
         <a href="#execucao-final">8. Rodar</a>
-        <a href="#grafo-projeto">9. Grafo</a>
         <a href="#video-apoio">10. Vídeo</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -117,7 +116,6 @@
           <li><a href="#chaves-api">6. Pegar as Chaves de API</a></li>
           <li><a href="#configurar-combo">7. Criar o Combo no Painel</a></li>
           <li><a href="#execucao-final">8. Rodar o Claude Code</a></li>
-          <li><a href="#grafo-projeto">9. Grafo do Projeto (Graphify)</a></li>
           <li><a href="#video-apoio">10. Vídeo de Apoio</a></li>
           <li><a href="#links-alunos">11. Links &amp; Materiais</a></li>
         </ul>
@@ -763,59 +761,6 @@ claude</code></pre>
         </div>
       </section>
 
-      <!-- Section 9: Grafo do Projeto (Graphify) -->
-      <section id="grafo-projeto">
-        <h2><span class="num">9</span> Mapa de Conhecimento &amp; Grafo do Projeto (Graphify)</h2>
-        <p>Explore o mapa interativo de arquitetura e conceitos do laboratório gerado pelo <strong>Graphify</strong>. Arraste os nós, use o scroll do mouse para zoom, busque termos específicos ou filtre por comunidades temáticas:</p>
-
-        <div class="graph-container-card" id="graph-container-card">
-          <div class="graph-card-header">
-            <div class="graph-header-left">
-              <span class="graph-badge">GRAPHIFY KNOWLEDGE GRAPH</span>
-              <span class="graph-meta">27 nós &middot; 27 conexões &middot; 6 comunidades</span>
-            </div>
-            <div class="graph-header-controls">
-              <div class="graph-search-box">
-                <input id="graph-search-input" type="text" placeholder="Buscar no grafo (ex: Claude, Gemini)..." autocomplete="off">
-                <div id="graph-search-dropdown" class="graph-search-results"></div>
-              </div>
-              <button type="button" id="graph-btn-fit" class="btn-graph-action" title="Centralizar visualização">&#8635; Centralizar</button>
-              <button type="button" id="graph-btn-fullscreen" class="btn-graph-action" title="Alternar modo tela cheia">&#x26F6; Tela Cheia</button>
-            </div>
-          </div>
-
-          <div class="graph-card-layout">
-            <div id="graph-canvas-area" class="graph-canvas"></div>
-            <div class="graph-side-panel">
-              <div class="graph-panel-section">
-                <h4>Detalhes do Nó</h4>
-                <div id="graph-node-details" class="graph-node-details">
-                  <span class="empty-hint">Clique em um nó do grafo para ver detalhes e conexões.</span>
-                </div>
-              </div>
-              <div class="graph-panel-section">
-                <div class="legend-header-row">
-                  <h4>Comunidades</h4>
-                  <label class="legend-select-all-label">
-                    <input type="checkbox" id="graph-select-all" checked>
-                    <span>Todas</span>
-                  </label>
-                </div>
-                <div id="graph-legend-list" class="graph-legend-list"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="graph-card-footer">
-            <div class="graph-tips">
-              <span>🖱️ <strong>Dica:</strong> Arraste nós para organizar &bull; Scroll para Zoom &bull; Clique no nó para ver vizinhos</span>
-            </div>
-            <div class="graph-footer-actions">
-              <a href="graphify-out/graph.html" target="_blank" class="btn-graph-action">&#8599; Abrir em nova aba</a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Section 10: Vídeo de Apoio -->
       <section id="video-apoio">
@@ -865,7 +810,6 @@ claude</code></pre>
   </footer>
 
   <div id="toast">Comando copiado!</div>
-  <script src="https://unpkg.com/vis-network@9.1.6/standalone/umd/vis-network.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
