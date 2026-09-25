@@ -236,4 +236,37 @@ Para os alunos que preferem assistir à demonstração visual no YouTube:
 * 🔑 **Groq Cloud (Llama 3):** [https://console.groq.com/keys](https://console.groq.com/keys)
 
 ---
+## ☁️ 12. Extra: Agente Local x Agente na Nuvem
+
+O Claude Code também pode rodar **na nuvem** (`claude --cloud`): a tarefa vai para um computador da Anthropic, que clona o repositório do GitHub e trabalha sozinho, mesmo com o seu PC desligado. Mas as regras mudam:
+
+| | Local (esta aula) | Nuvem (`--cloud`) |
+|---|---|---|
+| Onde roda | No PC do aluno | Em um contêiner da Anthropic |
+| Modelos | Gratuitos, via OmniRoute (Gemini, Groq...) | Somente modelos Claude |
+| Janelas abertas | Duas (motor + Claude) | Nenhuma: pode fechar o PC |
+| Arquivos | Pasta do seu computador | Repositório clonado do GitHub |
+| Custo | Grátis, com limite (erro 429) | Exige plano pago do Claude |
+
+### 🚨 Erro real: a configuração local "vaza" para a nuvem
+Ao rodar `claude --cloud "tarefa"` num PC configurado com OmniRoute, a sessão na nuvem herdou o modelo local e falhou:
+```text
+There's an issue with the selected model (qwen/qwen3.8-27b:free).
+It may not exist or you may not have access to it.
+```
+**Por quê?** O OmniRoute existe só em `localhost:20128`, no seu PC. A nuvem não enxerga o seu computador, então não consegue usar o combo `gratuitos` nem modelos `:free`.
+
+### 🔹 Passo 12.1: Rodar na nuvem sem estragar o local
+Dentro da pasta do repositório, coloque o `--model` **antes** do `--cloud` (a descrição precisa vir logo depois do `--cloud`):
+```powershell
+claude --model claude-sonnet-5 --cloud "Revise o index.html e melhore a acessibilidade"
+```
+* **Nada muda no seu PC:** o `--model` vale só para esse comando. O `claude` local continua usando o OmniRoute normalmente.
+
+### ⚠️ Erros comuns
+* `Error: --cloud requires a description.` → o `--model` foi colocado depois do `--cloud`. Inverta a ordem.
+* Sessão criada, mas falhou com modelo `:free` → faltou o `--model claude-sonnet-5`.
+* Não apague o `.claude\settings.local.json`: ele continua necessário para a aula local.
+
+---
 *Material didático desenvolvido para o AGENT-LAB — IFCE Campus Caucaia.*

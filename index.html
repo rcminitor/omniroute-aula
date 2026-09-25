@@ -29,6 +29,7 @@
         <a href="#configurar-combo">7. Combo</a>
         <a href="#execucao-final">8. Rodar</a>
         <a href="#video-apoio">10. Vídeo</a>
+        <a href="#local-vs-nuvem">12. Nuvem</a>
         <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" rel="noopener noreferrer" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           github.com/rcminitor
@@ -118,6 +119,7 @@
           <li><a href="#execucao-final">8. Rodar o Claude Code</a></li>
           <li><a href="#video-apoio">10. Vídeo de Apoio</a></li>
           <li><a href="#links-alunos">11. Links &amp; Materiais</a></li>
+          <li><a href="#local-vs-nuvem">12. Extra: Local x Nuvem</a></li>
         </ul>
       </div>
     </aside>
@@ -800,6 +802,63 @@ claude</code></pre>
               <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" style="color: #fb923c; font-weight: 600; display: block;">&#8594; Groq Cloud (Llama 3)</a>
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- Section 12: Local x Nuvem -->
+      <section id="local-vs-nuvem">
+        <h2><span class="num">12</span> Extra: Agente Local x Agente na Nuvem</h2>
+        <p>O Claude Code também pode rodar <strong>na nuvem</strong> (<code>claude --cloud</code>): a tarefa é enviada para um computador da Anthropic, que clona o repositório do GitHub e trabalha sozinho, mesmo com o seu PC desligado. Mas as regras mudam:</p>
+
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr><th></th><th>Local (esta aula)</th><th>Nuvem (<code>--cloud</code>)</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Onde roda</th><td>No PC do aluno</td><td>Em um contêiner da Anthropic</td></tr>
+              <tr><th scope="row">Modelos</th><td>Gratuitos, via OmniRoute (Gemini, Groq...)</td><td>Somente modelos Claude</td></tr>
+              <tr><th scope="row">Janelas abertas</th><td>Duas (motor + Claude)</td><td>Nenhuma: pode fechar o PC</td></tr>
+              <tr><th scope="row">Arquivos</th><td>Pasta do seu computador</td><td>Repositório clonado do GitHub</td></tr>
+              <tr><th scope="row">Custo</th><td>Grátis, com limite (erro 429)</td><td>Exige plano pago do Claude</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="info-box danger-box" style="margin-top: 1.25rem;">
+          <h3>Erro real: a configuração local "vaza" para a nuvem</h3>
+          <p>Ao rodar <code>claude --cloud "tarefa"</code> num PC configurado com OmniRoute, a sessão na nuvem herdou o modelo local e falhou:</p>
+          <div class="code-box">
+            <div class="code-header"><span>Mensagem da sessão na nuvem</span></div>
+            <pre><code>There's an issue with the selected model (qwen/qwen3.8-27b:free).
+It may not exist or you may not have access to it.</code></pre>
+          </div>
+          <p><strong>Por quê?</strong> O roteador OmniRoute existe só em <code>localhost:20128</code>, no seu PC. A nuvem não enxerga o seu computador, então não consegue usar o combo <code>gratuitos</code> nem modelos <code>:free</code>.</p>
+        </div>
+
+        <div class="step-container">
+          <div class="step-header">
+            <span class="step-num-badge">Passo 12.1 &middot; Rodar na Nuvem sem Estragar o Local</span>
+            <h3>Informar um modelo Claude só naquele comando</h3>
+          </div>
+          <p>Dentro da pasta do repositório, coloque o <code>--model</code> <strong>antes</strong> do <code>--cloud</code> (a descrição da tarefa precisa vir logo depois do <code>--cloud</code>):</p>
+          <div class="code-box">
+            <div class="code-header">
+              <span>PowerShell</span>
+              <button class="copy-btn" data-target="code-cloud">Copiar Comando</button>
+            </div>
+            <pre><code id="code-cloud">claude --model claude-sonnet-5 --cloud "Revise o index.html e melhore a acessibilidade"</code></pre>
+          </div>
+          <div class="expected-output">
+            <strong>Nada é alterado no seu PC:</strong> o <code>--model</code> vale só para esse comando. O <code>claude</code> local continua usando o OmniRoute e o combo <code>gratuitos</code> normalmente.
+          </div>
+        </div>
+
+        <div class="info-box alert-box" style="margin-top: 1.25rem;">
+          <h3>Erros comuns</h3>
+          <p><code>Error: --cloud requires a description.</code> &rarr; o <code>--model</code> foi colocado depois do <code>--cloud</code>. Inverta a ordem.<br>
+          Sessão criada mas falhou com modelo <code>:free</code> &rarr; faltou o <code>--model claude-sonnet-5</code>.<br>
+          Não ache que precisa apagar o <code>.claude\settings.local.json</code>: ele continua necessário para a aula local.</p>
         </div>
       </section>
     </main>
