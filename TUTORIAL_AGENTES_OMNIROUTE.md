@@ -89,7 +89,7 @@ Impede que suas senhas ou arquivos temporários subam para a internet por engano
 *.env
 *.log
 *.sqlite*
-'@ | Out-File -FilePath .gitignore -Encoding utf8
+'@ | ForEach-Object { [IO.File]::WriteAllText("$PWD\.gitignore", $_) }
 ```
 
 ---
@@ -112,12 +112,32 @@ Cria o arquivo `.claude\settings.local.json` apontando para o servidor local:
   "model": "gratuitos",
   "disableClaudeAiConnectors": true
 }
-'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8
+'@ | ForEach-Object { [IO.File]::WriteAllText("$PWD\.claude\settings.local.json", $_) }
 ```
 
 ---
 
-## 🔑 5. Chegou a Hora: Pegar as Chaves Gratuitas de API
+## 🔌 5. Ligar o OmniRoute (Fazer o Servidor Funcionar)
+
+Antes de cadastrar as chaves ou usar o Claude, **ligue o servidor OmniRoute**. Sem ele ligado, nada funciona.
+
+### 🔹 Passo 5.1: Iniciar o servidor (Janela 1)
+Nesta primeira janela do terminal, inicie o servidor:
+```powershell
+omniroute serve
+```
+> ⚠️ **Atenção:** Esta janela vai ficar ocupada mostrando logs do servidor. **NÃO FECHE ESTA JANELA.**
+>
+> ✅ **Sinal de que funcionou:** aparece algo como `Server started on http://localhost:20128`.
+
+---
+
+### 🔹 Passo 5.2: Abrir o Painel no Navegador
+Acesse [http://localhost:20128](http://localhost:20128). No menu da esquerda você verá **Dashboard**, **Providers**, **Combos** e **Logs**.
+
+---
+
+## 🔑 6. Chegou a Hora: Pegar as Chaves Gratuitas de API
 
 Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos sites oficiais**:
 
@@ -141,10 +161,10 @@ Agora que a estrutura do seu projeto está montada, **vamos pegar as chaves nos 
 
 ---
 
-## ⚙️ 6. Como Conectar os Provedores, Criar o Combo e Testar no OmniRoute
+## ⚙️ 7. Como Conectar os Provedores, Criar o Combo e Testar no OmniRoute
 
 ### 🔹 Etapa A: Cadastrar os Provedores no Painel
-1. Abra o painel do OmniRoute no navegador (rode no terminal `omniroute dashboard` ou acesse `http://localhost:20128`).
+1. Abra o painel do OmniRoute no navegador (acesse `http://localhost:20128` com o `omniroute serve` ligado na Janela 1).
 2. No menu da esquerda, clique em **"Providers"**.
 3. Clique em **"Add Provider"**, selecione **Google Gemini**, cole a chave `AIzaSy...` e clique em **Save/Connect**.
 4. Clique novamente em **"Add Provider"**, selecione **Groq**, cole a chave `gsk_...` e clique em **Save/Connect**.
@@ -177,18 +197,11 @@ omniroute providers test-all
 
 ---
 
-## 🚀 7. Ligar o Motor e Rodar o Claude Code
+## 🚀 8. Ligar e Rodar o Claude Code
 
-### 🔹 Passo 5: Ligar o Motor do OmniRoute (Janela 1)
-Nesta primeira janela do terminal, inicie o servidor:
-```powershell
-omniroute serve
-```
-> ⚠️ **Atenção:** Esta janela vai ficar ocupada mostrando logs do servidor. **NÃO FECHE ESTA JANELA.**
+> ⚠️ Confira antes: a Janela 1 (com `omniroute serve`) ainda está aberta? Se fechou, rode `omniroute serve` de novo.
 
----
-
-### 🔹 Passo 6: Abrir a Segunda Janela e Rodar o Claude Code (Janela 2)
+### 🔹 Passo 8.1: Abrir a Segunda Janela e Rodar o Claude Code (Janela 2)
 1. Abra uma **nova janela** do PowerShell (tecla Windows + digite `powershell`).
 2. Entre na pasta do seu projeto e chame o Claude:
 ```powershell
@@ -199,10 +212,28 @@ claude
 
 ---
 
-## 🎥 8. Vídeos e Tutoriais de Apoio no YouTube
+## 🖥️ 9. Comandos Úteis Durante a Aula
+
+* `* Transfiguring...` — animação normal de processamento. Aguarde, não aperte nada.
+* `/clear` — limpa o histórico da conversa e deixa as respostas mais rápidas.
+* `/exit` (ou Ctrl+C) — fecha o Claude Code.
+* `omniroute providers test-all` — verifica, em outra janela, o status dos provedores.
+
+---
+
+## 🎥 10. Vídeo de Apoio no YouTube
 
 Para os alunos que preferem assistir à demonstração visual no YouTube:
-* 📺 **Pesquisa de Vídeos Tutoriais:** [https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial](https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial)
+* 📺 **Demonstração prática (início em 20:15):** [https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s](https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s)
+* 🔎 **Pesquisa de outros vídeos:** [https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial](https://www.youtube.com/results?search_query=omniroute+claude+code+tutorial)
+
+---
+## 🔗 11. Links Oficiais para a Turma
+
+* 🌐 **Página Web da Aula:** [https://rcminitor.github.io/omniroute-aula/](https://rcminitor.github.io/omniroute-aula/)
+* 💻 **Repositório no GitHub:** [https://github.com/rcminitor/omniroute-aula](https://github.com/rcminitor/omniroute-aula)
+* 🔑 **Google AI Studio (Gemini):** [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+* 🔑 **Groq Cloud (Llama 3):** [https://console.groq.com/keys](https://console.groq.com/keys)
 
 ---
 *Material didático desenvolvido para o AGENT-LAB — IFCE Campus Caucaia.*
