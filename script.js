@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const codeElement = document.getElementById(targetId);
       if (codeElement) {
         const originalText = btn.textContent;
+        const copyFailed = () => showToast('Não foi possível copiar. Selecione o texto e use Ctrl+C.');
+        if (!navigator.clipboard?.writeText) {
+          copyFailed();
+          return;
+        }
         navigator.clipboard.writeText(codeElement.innerText).then(() => {
           btn.textContent = 'Copiado! ✓';
           btn.classList.add('copied');
@@ -47,9 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = originalText;
             btn.classList.remove('copied');
           }, 2000);
-        }).catch(() => {
-          showToast('Não foi possível copiar. Selecione o texto e use Ctrl+C.');
-        });
+        }).catch(copyFailed);
       }
     });
   });
