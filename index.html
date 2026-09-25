@@ -29,7 +29,7 @@
         <a href="#configurar-combo">7. Combo</a>
         <a href="#execucao-final">8. Rodar</a>
         <a href="#video-apoio">10. Vídeo</a>
-        <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-github">
+        <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" rel="noopener noreferrer" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           github.com/rcminitor
         </a>
@@ -386,7 +386,7 @@ mkdir .claude -Force</code></pre>
 *.env
 *.log
 *.sqlite*
-'@ | Out-File -FilePath .gitignore -Encoding utf8</code></pre>
+'@ | ForEach-Object { [IO.File]::WriteAllText("$PWD\.gitignore", $_) }</code></pre>
           </div>
         </div>
 
@@ -416,7 +416,7 @@ mkdir .claude -Force</code></pre>
   "model": "gratuitos",
   "disableClaudeAiConnectors": true
 }
-'@ | Out-File -FilePath .claude\settings.local.json -Encoding utf8</code></pre>
+'@ | ForEach-Object { [IO.File]::WriteAllText("$PWD\.claude\settings.local.json", $_) }</code></pre>
           </div>
           <div class="expected-output">
             <strong>Pronto!</strong> As ferramentas estão instaladas. Agora vamos <strong>ligar o servidor OmniRoute</strong> antes de continuar.
@@ -461,7 +461,7 @@ mkdir .claude -Force</code></pre>
           </div>
           <p>Com o servidor ligado, <strong>abra seu navegador</strong> (Chrome, Edge ou Firefox) e acesse:</p>
           <div style="margin: 1rem 0;">
-            <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: #8b5cf6;">
+            <a href="http://localhost:20128" target="_blank" rel="noopener noreferrer" class="btn-open-site" style="background: #8b5cf6;">
               Abrir Painel OmniRoute (localhost:20128) &#8599;
             </a>
           </div>
@@ -515,7 +515,7 @@ mkdir .claude -Force</code></pre>
                 </div>
               </div>
             </div>
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-open-site" style="background: #4285f4;">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="btn-open-site" style="background: #4285f4;">
               Abrir Google AI Studio &#8599;
             </a>
           </div>
@@ -553,7 +553,7 @@ mkdir .claude -Force</code></pre>
                 </div>
               </div>
             </div>
-            <a href="https://console.groq.com/keys" target="_blank" class="btn-open-site" style="background: #f97316;">
+            <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="btn-open-site" style="background: #f97316;">
               Abrir Groq Cloud &#8599;
             </a>
           </div>
@@ -565,7 +565,7 @@ mkdir .claude -Force</code></pre>
         <h2><span class="num">7</span> Cadastrar Provedores e Criar o Combo no Painel</h2>
         <p>Agora vamos entrar no painel do OmniRoute, colar as chaves e criar o <strong>Combo de Fallback</strong>. Lembre-se: o servidor precisa estar ligado (Seção 5)!</p>
         <div style="margin-bottom: 1.25rem;">
-          <a href="http://localhost:20128" target="_blank" class="btn-open-site" style="background: #8b5cf6;">
+          <a href="http://localhost:20128" target="_blank" rel="noopener noreferrer" class="btn-open-site" style="background: #8b5cf6;">
             Abrir Painel OmniRoute (localhost:20128) &#8599;
           </a>
         </div>
@@ -771,7 +771,7 @@ claude</code></pre>
           <iframe src="https://www.youtube-nocookie.com/embed/Dx48phZc6bA?start=1215" title="Demonstração Prática Claude Code &amp; OmniRoute" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div class="video-caption">
             <span>📺 Demonstração prática do Claude Code com OmniRoute (início em 20:15)</span>
-            <a href="https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s" target="_blank" class="btn-ui-action btn-ui-purple">Assistir no YouTube &#8599;</a>
+            <a href="https://www.youtube.com/watch?v=Dx48phZc6bA&t=1215s" target="_blank" rel="noopener noreferrer" class="btn-ui-action btn-ui-purple">Assistir no YouTube &#8599;</a>
           </div>
         </div>
       </section>
@@ -782,22 +782,22 @@ claude</code></pre>
         <div class="card-grid">
           <div class="info-box success-box">
             <h3>Página Web da Aula</h3>
-            <p><a href="https://rcminitor.github.io/omniroute-aula/" target="_blank" style="color: var(--accent-cyan); font-weight: 700; word-break: break-all;">https://rcminitor.github.io/omniroute-aula/</a></p>
+            <p><a href="https://rcminitor.github.io/omniroute-aula/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); font-weight: 700; word-break: break-all;">https://rcminitor.github.io/omniroute-aula/</a></p>
           </div>
           <div class="info-box">
             <h3>Repositório no GitHub</h3>
-            <p><a href="https://github.com/rcminitor/omniroute-aula" target="_blank" style="color: #c084fc; font-weight: 700; word-break: break-all;">https://github.com/rcminitor/omniroute-aula</a></p>
+            <p><a href="https://github.com/rcminitor/omniroute-aula" target="_blank" rel="noopener noreferrer" style="color: #c084fc; font-weight: 700; word-break: break-all;">https://github.com/rcminitor/omniroute-aula</a></p>
           </div>
           <div class="info-box tip-box">
             <h3>Documentação OmniRoute</h3>
             <p style="margin-bottom: 0.75rem;">Referência técnica de combos, compressão de tokens e configurações avançadas:</p>
-            <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" class="btn-open-site">Ver no GitHub &#8599;</a>
+            <a href="https://github.com/rcminitor/omniroute-aula" target="_blank" rel="noopener noreferrer" class="btn-open-site">Ver no GitHub &#8599;</a>
           </div>
           <div class="info-box">
             <h3>Sites para obter as chaves</h3>
             <p>
-              <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #60a5fa; font-weight: 600; display: block; margin-bottom: 0.35rem;">&#8594; Google AI Studio (Gemini)</a>
-              <a href="https://console.groq.com/keys" target="_blank" style="color: #fb923c; font-weight: 600; display: block;">&#8594; Groq Cloud (Llama 3)</a>
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; font-weight: 600; display: block; margin-bottom: 0.35rem;">&#8594; Google AI Studio (Gemini)</a>
+              <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" style="color: #fb923c; font-weight: 600; display: block;">&#8594; Groq Cloud (Llama 3)</a>
             </p>
           </div>
         </div>
